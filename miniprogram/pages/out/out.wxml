@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="clickBar">
+    <view class="shareFood icon">
+       <image src="/images/shareFood.png"></image>
+       <view class="desc">分享美食</view>
+    </view>
+    <view class="voteList icon">
+      <image src="/images/vote.png"></image>
+      <view class="desc">快来帮帮手</view>
+    </view>
+  </view>
+</view>

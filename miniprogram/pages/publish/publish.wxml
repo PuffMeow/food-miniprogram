@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="foodName">
+    <input focus="true" placeholder="请输入美食的名称~" placeholder-class="iptHolder" maxlength="15" confirm-type="next"></input>
+  </view>
+  <view class="address">
+    <input placeholder="这个好吃的玩意是从哪里来的呢?" placeholder-class="iptHolder" maxlength="20" confirm-type="next"></input>
+  </view>
+  <view class="desc">
+    <textarea placeholder="说说对这个美味的看法吧~" maxlength="120" placeholder-class="textHolder">
+    <view class="count">110/120字</view>
+    </textarea>
+  </view>
+  <!-- 上传图片 -->
+  <view class="uploadArea">
+    <!-- <view class="shareTitle">请至少分享一张美食图片哦~</view> -->
+    <view>
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="imageUpBox">
+          <image class="uploadImg" src="{{item}}" data-idx="{{index}}" mode="aspectFill" bindtap="previewImg"></image>
+          <view class="removeImg" bindtap="removeImg" data-idx="{{index}}">
+            <image src="/images/close.png"></image>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="uploadBtn" bindtap="chooseImage" wx:if="{{images.length < 6}}">
+      <image src="/images/add.png"></image>
+    </view>
+  </view>
+
+  <button type="primary" class="pub">发布</button>
+</view>

@@ -1,0 +1,103 @@
+.container{
+  width: 100%;
+  height: 100vh;
+  background-color: #F7F7F7;
+}
+
+swiper{
+  width: 100%;
+  height: calc(100vh - 345rpx - 100rpx)
+}
+
+.slideImg{
+  width: 100%;
+  height: 100%;
+}
+
+.userInfo{
+  height: 340rpx;
+}
+
+.user{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.avatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin: 10rpx;
+}
+
+.gender image{
+  width: 40rpx;
+  height: 40rpx;
+  padding-top: 6rpx;
+  padding-left: 10rpx;
+}
+
+.nickName{
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.tInfo{
+  display: flex;
+  flex-direction: row;
+  padding-left: 20rpx;
+}
+
+.date{
+  color: #999999;
+  padding-left: 20rpx;
+}
+
+.desc{
+  padding-left: 20rpx;
+}
+
+.clickBar{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 105rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.inputDanmu{
+  width: 50%;
+  height: 85rpx;
+  box-sizing: border-box;
+  border-radius: 50rpx;
+  padding:0 20rpx;
+  margin-left: 20rpx;
+  background-color: #F3F3F3;
+}
+
+.placeholder{
+  font-size: 26rpx;
+  color: #ccc;
+}
+
+
+.clickBar image{
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+}
+
+.danmuSwith{
+  margin-left: 15rpx;
+}
+
+.danmuSwith text{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+}

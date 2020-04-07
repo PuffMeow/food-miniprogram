@@ -1,0 +1,129 @@
+page{
+  background-color:#F7F7F7;
+}
+
+.container{
+  height: 100vh;
+  width: 550rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.foodName{
+  padding-top:80rpx;
+}
+
+.foodName input{
+  border-bottom: 1rpx solid #ccc;
+  padding: 0 20rpx;
+}
+
+.address{
+  margin-top: 50rpx;
+}
+
+.address input{
+  border-bottom: 1rpx solid #ccc;
+  padding: 0 20rpx;
+}
+
+.desc{
+  width: 100%;
+  padding:15rpx 20rpx 5rpx;
+  margin: 50rpx auto 0;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+}
+
+.desc textarea{
+  width: 100%;
+  height: 260rpx;
+  position: relative;
+  font-size: 30rpx;
+}
+
+.desc textarea .count{
+  position: absolute;
+  right: 10rpx;
+  bottom: 5rpx;
+  font-size: 25rpx;
+  color: #ccc;
+}
+
+.iptHolder{
+  font-size: 25rpx;
+  color: #999;
+}
+
+.textHolder{
+  font-size: 25rpx;
+  color: #999;
+}
+
+.shareTitle{
+  padding:25rpx 30rpx 0;
+  color: #FF0000;
+  font-size: 28rpx;
+}
+
+.container .pub{
+  background-color: #FF8D00;
+  border-radius: 20rpx;
+  position: absolute;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container .pub:active{
+  background-color: red;
+}
+
+.uploadArea{
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.imageUpBox{
+  position: relative;
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+  margin: 12rpx;
+}
+
+.uploadImg{
+  width: 100%;
+  height: 100%;
+  border: 3rpx solid #ccc;
+  border-radius: 20rpx;
+}
+
+.removeImg image{
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #ccc;
+  opacity: .4;
+  border-radius: 10rpx;
+}
+
+.removeImg{
+  position: absolute;
+  right: 0;
+  top: 2rpx;
+}
+
+.uploadBtn{
+  width: 150rpx;
+  height: 150rpx;
+  border: 3rpx solid #ccc;
+  float: left;
+  margin: 12rpx;
+  border-radius: 20rpx;
+}
+
+.uploadBtn image{
+  width: 100%;
+  height: 100%;
+}

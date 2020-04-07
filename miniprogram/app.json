@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/publish/publish",
+    "pages/comment/comment",
+    "pages/index/index",
+    "pages/login/login",
+    "pages/out/out",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF8D00",
+    "navigationBarTitleText": "美味中转站",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#FF7A7A",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "吃点什么",
+        "iconPath": "images/eat2.png",
+        "selectedIconPath": "images/eat.png"
+      },
+      {
+        "pagePath": "pages/out/out",
+        "text": "好心情",
+        "iconPath": "images/out2.png",
+        "selectedIconPath": "images/out.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "吃货空间",
+        "iconPath": "images/my2.png",
+        "selectedIconPath": "images/my.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

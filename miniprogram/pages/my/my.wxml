@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="header">
+    <view class="avatar">
+      <image src="/images/avatar.jpg"></image>
+    </view>
+    <view class="userInfo">
+      <view class="nickName">&You</view>
+      <image class="gender" src="/images/rice.png"></image>
+    </view>
+
+    <view class="statusBar">
+      <view class="steps">
+        <view>2000</view>
+        <view>今日步数</view>
+      </view>
+      <view class="calorie">
+        <view>2333cal</view>
+        <view>消耗卡路里</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <view>
+      <image class="img" src="/images/favor.png"></image>
+      美食收藏夹
+      <image class="arrow" src="/images/arrow.png"></image>  
+    </view>
+    <view>
+      <image class="img" src="/images/write.png"></image>
+      我的评论
+      <image class="arrow" src="/images/arrow.png"></image>
+    </view>
+    <view>
+      <image class="img" src="/images/history.png"></image>
+      浏览记录
+      <image class="arrow" src="/images/arrow.png"></image>
+    </view>
+    <view>
+      <image class="img" src="/images/hisVote.png"></image>
+      历史投票
+      <image class="arrow" src="/images/arrow.png"></image>
+    </view>
+    <view class="feedback">
+      <button open-type="feedback">
+        <image class="img" src="/images/feedback.png"></image>
+        意见反馈
+        <image class="arrow" src="/images/arrow.png"></image>
+      </button>
+    </view>
+  </view>
+  <view class="tip">
+    <image src="/images/move.png"></image>
+    <view>不要光记得吃噢，要多动动~</view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+<view class="container">
+  <image class="bg" src="/images/loginBg.jpg"></image>
+  <view class="title">
+    <text class="font">美</text> 
+    <text class="font">味</text> 
+  </view>
+  <view class="rTitle">中 转 站</view>
+  <view class="content">寻你所爱</view>
+  <button bindtap="login">授权登录</button>
+</view>

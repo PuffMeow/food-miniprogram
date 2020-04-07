@@ -1,0 +1,36 @@
+page{
+  background-color:  #F7F7F7;
+}
+
+.clickBar{
+  position: absolute;
+  bottom: 520rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.clickBar image{
+  width: 130rpx;
+  height: 130rpx;
+  display: block;
+  margin:0 auto;
+}
+
+.icon{
+  width: 220rpx;
+  height: 220rpx;
+  margin: 0 35rpx;
+  border: 3rpx solid #ccc;
+  border-radius: 30rpx;
+  background-color: #ffffff;
+  box-shadow: 6rpx 5rpx 15rpx;
+}
+
+.desc{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+

@@ -1,0 +1,90 @@
+page{
+  background-color: #F8F8F8;
+}
+
+.container{
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  width: 670rpx;
+  height: calc(100vh - 80rpx);
+  margin: 50rpx auto 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50rpx;
+  background-color: #ffffff;
+}
+
+.content .pic{
+  width: 100%;
+  border-top-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+  border-bottom-right-radius: 60rpx;
+  height: calc(100vh - 400rpx);
+}
+
+.clickBar{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  bottom: 225rpx;
+  right: 8rpx;
+  align-items: flex-end;
+}
+
+.clickBar image{
+  width: 70rpx;
+  height: 70rpx;
+  margin: 0 10rpx;
+  border:5rpx solid #F3F3F3;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.clickBar .like image{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.clickBar .count{
+  text-align: center;
+}
+
+.footer{
+  width: 100%;
+  margin-top: 50rpx;
+}
+
+.footer .title{
+  font-weight: 700;
+  width: 50%;
+  font-size:50rpx;
+  padding-left: 22rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.footer .address{
+  font-size:35rpx;
+  padding-left: 22rpx;
+  margin: 20rpx 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.footer .desc{
+  color: #999;
+  padding: 0 22rpx;
+  height: 100rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

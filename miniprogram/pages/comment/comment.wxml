@@ -1,0 +1,33 @@
+<view class="container">
+  <swiper autoplay indicator-dots>
+    <block>
+      <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
+        <image class="slideImg" src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="userInfo">
+    <view class="user">
+      <image class="avatar" src="/images/avatar.jpg"></image>
+      <view>
+        <view class="tInfo">
+          <view class="nickName">&You</view>
+          <view class="gender"><image src="/images/boy.png"></image></view>
+        </view>
+        <view class="date">2020-04-06</view>
+      </view>
+    </view>
+    <view class="desc">这个东西特别好吃，强烈推荐!</view>
+  </view>
+
+  <view class="clickBar">
+    <input class="inputDanmu" confirm-type="send" placeholder="随便说两句对美食的看法嘛~" placeholder-class="placeholder" adjust-position="false"    confirm-type="send"></input>
+    <image class="like" src="/images/like.png"></image>
+    <image class="favor" src="/images/favor.png"></image>
+    <view class="danmuSwith">
+      <switch/>
+      <text>弹幕</text>
+    </view>
+  </view>
+</view>

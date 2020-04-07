@@ -1,0 +1,25 @@
+<view class="container">
+
+  <view class="content">
+    <image  class="pic" src="/images/pic.jpg"></image>
+    <view class="clickBar">
+      <view class="outComment">
+        <view class="comment"><image src="/images/comment.png"></image></view>
+        <view class="count">99</view>
+      </view>
+      <view class="outFavor">
+        <view class="favor"><image src="/images/favor.png"></image></view>
+        <view class="count">23</view>
+      </view>
+      <view class="outLike">
+        <view class="like"><image src="/images/like.png"></image></view>
+        <view class="count">33</view>
+      </view>
+    </view>
+    <view class="footer">
+      <view class="title">家常便饭</view>
+      <view class="address">家</view>
+      <view class="desc">这些东西特别好吃，强烈推荐！都把我看饿了，肚子咕咕咕</view>
+    </view>
+  </view>
+</view>

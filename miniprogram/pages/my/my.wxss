@@ -1,0 +1,137 @@
+page{
+ background-color:#F7F7F7;
+}
+
+.container{
+  width: 650rpx;
+  height: calc(100vh - 80rpx);
+  margin: 40rpx auto 10rpx;
+  border-radius: 50rpx;
+}
+
+.header{
+  background:linear-gradient(to right bottom,#F7B52C,#F59C70,#EF718F);
+  border-radius: 50rpx;
+}
+
+.avatar{
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 auto;
+  padding: 20rpx 0 10rpx;
+}
+
+.avatar image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.userInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nickName{
+  font-size: 40rpx;
+  margin: 0 10rpx;
+}
+
+.gender{
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.statusBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 10rpx 0;
+  padding-bottom: 20rpx;
+}
+
+.steps view:nth-child(1){
+  font-size: 45rpx;
+  margin: 0 60rpx;
+}
+
+.steps view:nth-child(2){
+  font-size: 25rpx;
+}
+
+.calorie view:nth-child(1){
+  font-size: 45rpx;
+  margin: 0 60rpx;
+}
+
+.calorie view:nth-child(2){
+  font-size: 25rpx;
+}
+
+.content{
+  position: relative;
+  margin-top: 40rpx;
+}
+
+.content view{
+  height: 80rpx;
+  width: 100%;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  background-color: #ffffff;
+  padding: 0 30rpx;
+  margin-top: 15rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+}
+
+.content .img{
+  width: 30rpx;
+  height: 30rpx;
+  padding-right: 15rpx;
+}
+
+.feedback button{
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  color: #62627D;
+  display: initial;
+  font-weight: initial;
+  font-size: 35rpx;
+  border-radius: 0rpx;
+  padding:0rpx;
+  margin:0rpx;
+  line-height: inherit;
+}
+
+.feedback button::after{
+  border: none;
+}
+
+
+.arrow{
+  width: 32rpx;
+  height: 32rpx;
+  float: right;
+  margin-top:26rpx;
+}
+
+.tip{
+  position: absolute;
+  bottom: 50rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ccc;
+  font-size: 30rpx;
+}
+
+.tip image{
+  height: 120rpx;
+  width: 120rpx;
+  display: block;
+  margin: 0 auto;
+}
+

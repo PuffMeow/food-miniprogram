@@ -1,0 +1,69 @@
+.container{
+  position: relative;
+  width: 750rpx;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.bg{
+  width: 750rpx;
+  height: 100vh;
+  filter: opacity(.7) brightness(70%) blur(3rpx);
+}
+
+.title{
+  position: absolute;
+  font-size: 180rpx;
+  top: 200rpx;
+  left: 50rpx;
+}
+
+.font{
+  animation: title 0.8s infinite alternate;
+  display: inline-block;
+}
+
+.font:nth-child(1){
+  animation-delay: 0;
+}
+
+.font:nth-child(2){
+  animation-delay: 0.3s;
+}
+
+@keyframes title {
+  0% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: rgba(0, 0, 0, 0.4) 0 0 5rpx;
+  }
+  100% {
+    transform: translate3d(0, -100rpx, 0);
+    text-shadow: rgba(0, 0, 0, 0.4) 0 50rpx 30rpx;
+  }
+}
+
+.rTitle{
+  position: absolute;
+  top: 450rpx;
+  right: 30rpx;
+  writing-mode: vertical-lr;
+  font-size: 50rpx;
+}
+
+.content{
+  position: absolute;
+  bottom: 250rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.container button{
+  position: absolute;
+  bottom: 150rpx;
+  color: #ffffff;
+  background-color: #FF8D00;
+  border-radius: 50rpx;
+}
