@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "吃货空间"
+  "navigationBarTitleText": "吃货空间",
+  "navigationStyle": "custom",
+  "disableScroll": true
 }

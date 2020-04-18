@@ -1,45 +1,44 @@
-page{
-  background-color: #F8F8F8;
+.area{
+  width: 100vw;
+  height: 280vh;
+  position: absolute;
+  top: -90vh;
 }
-
-.container{
-  width: 100%;
-}
-
 .content {
   position: relative;
-  width: 670rpx;
-  height: calc(100vh - 80rpx);
-  margin: 50rpx auto 10rpx;
+  position: absolute;
+  left: 7%;
+  top: 35%;
+  width: 650rpx;
+  height: calc(100vh - 200rpx);
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   border-radius: 50rpx;
   background-color: #ffffff;
+  box-sizing: border-box;
 }
 
 .content .pic{
   width: 100%;
-  border-top-left-radius: 50rpx;
-  border-top-right-radius: 50rpx;
-  border-bottom-right-radius: 60rpx;
-  height: calc(100vh - 400rpx);
+  border-radius: 50rpx 50rpx 60rpx 0;
+  height: calc(100vh - 200rpx - 200rpx);
 }
 
 .clickBar{
   position: absolute;
   display: flex;
   flex-direction: row;
-  bottom: 225rpx;
+  bottom: 190rpx;
   right: 8rpx;
   align-items: flex-end;
 }
 
 .clickBar image{
-  width: 70rpx;
-  height: 70rpx;
+  width: 60rpx;
+  height: 60rpx;
   margin: 0 10rpx;
-  border:5rpx solid #F3F3F3;
   border-radius: 50%;
   background-color: #ffffff;
 }
@@ -51,6 +50,8 @@ page{
 
 .clickBar .count{
   text-align: center;
+  font-size: 25rpx;
+  color: #999;
 }
 
 .footer{
@@ -59,9 +60,9 @@ page{
 }
 
 .footer .title{
-  font-weight: 700;
-  width: 50%;
-  font-size:50rpx;
+  font-weight: 600;
+  width: 55%;
+  font-size:35rpx;
   padding-left: 22rpx;
   overflow: hidden;
   text-overflow:ellipsis;
@@ -69,21 +70,30 @@ page{
 }
 
 .footer .address{
-  font-size:35rpx;
+  font-size:30rpx;
   padding-left: 22rpx;
-  margin: 20rpx 0;
+  margin: 20rpx 0 0;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
 }
 
-.footer .desc{
+.address image{
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+  margin-bottom: 5rpx;
+}
+
+.desc{
   color: #999;
-  padding: 0 22rpx;
-  height: 100rpx;
-  line-height: 50rpx;
+  padding: 8rpx 22rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
   overflow: hidden;
   text-overflow:ellipsis;
+  white-space: normal;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

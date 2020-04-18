@@ -1,56 +1,34 @@
+<view class="background wall"></view>
+
 <view class="container">
-  <view class="header">
-    <view class="avatar">
-      <image src="/images/avatar.jpg"></image>
-    </view>
-    <view class="userInfo">
-      <view class="nickName">&You</view>
-      <image class="gender" src="/images/rice.png"></image>
-    </view>
+	<view class="header">
+		<view class="avatar">
+			<image src="{{showMessage ? avatar : '/images/noLogin.png'}}"></image>
+		</view>
+		<view class="userInfo" wx:if="{{showMessage}}">
+			<view class="nickName">{{nickName}}</view>
+			<image class="gender" src="{{gender == 0 ? '/images/rice.png' : gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+		</view>
+		<button class="loginBtn" size="mini" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击登录</button>
 
-    <view class="statusBar">
-      <view class="steps">
-        <view>2000</view>
-        <view>今日步数</view>
-      </view>
-      <view class="calorie">
-        <view>2333cal</view>
-        <view>消耗卡路里</view>
-      </view>
-    </view>
-  </view>
+		<view class="statusBar" hidden="{{!showMessage}}">
+			<view class="shareCount">
+				<view>{{0}}</view>
+				<view>分享数</view>
+			</view>
+			<view class="favorCount">
+				<view>{{0}}</view>
+				<view>收藏数</view>
+			</view>
+		</view>
 
-  <view class="content">
-    <view>
-      <image class="img" src="/images/favor.png"></image>
-      美食收藏夹
-      <image class="arrow" src="/images/arrow.png"></image>  
-    </view>
-    <view>
-      <image class="img" src="/images/write.png"></image>
-      我的评论
-      <image class="arrow" src="/images/arrow.png"></image>
-    </view>
-    <view>
-      <image class="img" src="/images/history.png"></image>
-      浏览记录
-      <image class="arrow" src="/images/arrow.png"></image>
-    </view>
-    <view>
-      <image class="img" src="/images/hisVote.png"></image>
-      历史投票
-      <image class="arrow" src="/images/arrow.png"></image>
-    </view>
-    <view class="feedback">
-      <button open-type="feedback">
-        <image class="img" src="/images/feedback.png"></image>
-        意见反馈
-        <image class="arrow" src="/images/arrow.png"></image>
-      </button>
-    </view>
-  </view>
-  <view class="tip">
-    <image src="/images/move.png"></image>
-    <view>不要光记得吃噢，要多动动~</view>
-  </view>
+		<view class="bottom">
+			<view class="myLike">我的点赞</view>
+			<view class="myComment">我的评论</view>
+			<view class="about">关于</view>
+			<view class="feedback"><button open-type="feedback">反馈</button></view>
+		</view>
+	</view>
+
+
 </view>

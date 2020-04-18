@@ -1,25 +1,32 @@
-<view class="container">
-
-  <view class="content">
-    <image  class="pic" src="/images/pic.jpg"></image>
-    <view class="clickBar">
-      <view class="outComment">
-        <view class="comment"><image src="/images/comment.png"></image></view>
-        <view class="count">99</view>
-      </view>
-      <view class="outFavor">
-        <view class="favor"><image src="/images/favor.png"></image></view>
-        <view class="count">23</view>
-      </view>
-      <view class="outLike">
-        <view class="like"><image src="/images/like.png"></image></view>
-        <view class="count">33</view>
-      </view>
-    </view>
-    <view class="footer">
-      <view class="title">家常便饭</view>
-      <view class="address">家</view>
-      <view class="desc">这些东西特别好吃，强烈推荐！都把我看饿了，肚子咕咕咕</view>
-    </view>
-  </view>
-</view>
+<movable-area class="area">
+	<movable-view wx:for="{{foodData}}" wx:key="index" class="content" direction="vertical" friction="{{0.1}}" data-idx="{{index}}" bindchange="cardMove" inertia="{{true}}" disabled="{{item.isMove}}" bindtouchend="touchEnd">
+		<image class="pic" mode="aspectFill" src="{{item.images[0]}}"></image>
+		<view class="clickBar">
+			<view>
+				<view class="comment" bindtap="toComment" data-_id="{{item._id}}">
+					<image src="/images/comment.png"></image>
+				</view>
+				<view class="count">{{item.commentNum}}</view>
+			</view>
+			<view>
+				<view class="favor">
+					<image src="/images/favor.png"></image>
+				</view>
+				<view class="count">{{item.favorNum}}</view>
+			</view>
+			<view>
+				<view class="like" bindtap="likeBtn" data-_id="{{item._id}}" data-idx="{{index}}">
+					<image src="{{item.isLike ? '/images/like.png':'/images/unlike.png'}}"></image>
+				</view>
+				<view class="count">{{item.likeNum}}</view>
+			</view>
+		</view>
+		<view class="footer">
+			<view class="title">{{item.foodName}}</view>
+			<view class="address">{{item.addrName}}
+				<image src="/images/indexTag.png" />
+			</view>
+			<view class="desc">{{item.desc}}</view>
+		</view>
+	</movable-view>
+</movable-area>

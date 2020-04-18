@@ -1,11 +1,16 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/publish/publish",
     "pages/comment/comment",
-    "pages/index/index",
     "pages/login/login",
     "pages/out/out",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/favorite/favorite",
+    "pages/myShare/myShare",
+    "pages/myComment/myComment",
+    "pages/myLike/myLike",
+    "pages/pubVote/pubVote"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -1,129 +1,142 @@
-page{
-  background-color:#F7F7F7;
-}
-
-.container{
+.container {
   height: 100vh;
   width: 550rpx;
   margin: 0 auto;
   position: relative;
 }
 
-.foodName{
-  padding-top:80rpx;
+.foodName {
+  position: relative;
+  padding-top: 80rpx;
 }
 
-.foodName input{
+.foodName input {
   border-bottom: 1rpx solid #ccc;
-  padding: 0 20rpx;
+  padding: 0 120rpx 0 20rpx;
 }
 
-.address{
+.address {
+  position: relative;
   margin-top: 50rpx;
 }
 
-.address input{
+.address input {
   border-bottom: 1rpx solid #ccc;
-  padding: 0 20rpx;
+  padding: 0 110rpx 0 20rpx;
 }
 
-.desc{
+.iptCount {
+  position: absolute;
+  right: 25rpx;
+  bottom: 5rpx;
+  font-size: 25rpx;
+  color: #ccc;
+}
+
+.desc {
   width: 100%;
-  padding:15rpx 20rpx 5rpx;
+  padding: 15rpx 20rpx 5rpx;
   margin: 50rpx auto 0;
   border: 1rpx solid #ccc;
   border-radius: 30rpx;
   box-sizing: border-box;
 }
 
-.desc textarea{
+.desc textarea {
   width: 100%;
-  height: 260rpx;
+  min-height: 260rpx;
   position: relative;
   font-size: 30rpx;
 }
 
-.desc textarea .count{
+.desc textarea .count {
   position: absolute;
-  right: 10rpx;
+  right: -5rpx;
   bottom: 5rpx;
   font-size: 25rpx;
   color: #ccc;
+  z-index: 99;
 }
 
-.iptHolder{
+.iptHolder {
   font-size: 25rpx;
   color: #999;
 }
 
-.textHolder{
+.textHolder {
   font-size: 25rpx;
   color: #999;
 }
 
-.shareTitle{
-  padding:25rpx 30rpx 0;
+.shareTitle {
+  padding: 25rpx 30rpx 0;
   color: #FF0000;
   font-size: 28rpx;
 }
 
-.container .pub{
+.container .pub {
   background-color: #FF8D00;
   border-radius: 20rpx;
-  position: absolute;
-  bottom: 100rpx;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
-.container .pub:active{
-  background-color: red;
-}
-
-.uploadArea{
+.uploadArea {
+  margin-top: 30rpx;
+  min-height: 430rpx;
   width: 100%;
-  margin-top: 40rpx;
 }
 
-.imageUpBox{
+.tip {
+  font-size: 20rpx;
+  color: #999;
+  position: absolute;
+  left: 20rpx;
+}
+
+.imageUpBox {
   position: relative;
   width: 150rpx;
   height: 150rpx;
   float: left;
-  margin: 12rpx;
+  margin: 40rpx 0 0 25rpx;
 }
 
-.uploadImg{
+.uploadImg {
   width: 100%;
   height: 100%;
   border: 3rpx solid #ccc;
   border-radius: 20rpx;
 }
 
-.removeImg image{
-  width: 30rpx;
-  height: 30rpx;
+.removeImg image {
+  width: 35rpx;
+  height: 35rpx;
   background-color: #ccc;
-  opacity: .4;
-  border-radius: 10rpx;
+  opacity: .6;
+  border-radius: 20rpx;
 }
 
-.removeImg{
+.removeImg {
   position: absolute;
   right: 0;
-  top: 2rpx;
+  top: 0;
 }
 
-.uploadBtn{
+.uploadBtn {
   width: 150rpx;
   height: 150rpx;
   border: 3rpx solid #ccc;
-  float: left;
-  margin: 12rpx;
   border-radius: 20rpx;
+  float: left;
+  margin: 50rpx 0 0 25rpx;
 }
 
-.uploadBtn image{
+.uploadBtn image {
   width: 100%;
   height: 100%;
+}
+
+#compress {
+  position: absolute;
+  left: -999rpx;
+  top: -999rpx;
 }

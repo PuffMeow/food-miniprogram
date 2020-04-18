@@ -8,6 +8,24 @@ Page({
 
   },
 
+  //跳转到分享美食页
+  shareFood(e){
+    let userid = wx.getStorageSync('userid');
+    if(userid){
+      wx.navigateTo({
+        url: '../publish/publish',
+      })
+    }else{
+      wx.switchTab({
+        url: '../my/my',
+      })
+      wx.showToast({
+        icon:'none',
+        title: '请先登录'
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

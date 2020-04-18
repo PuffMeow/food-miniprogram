@@ -1,103 +1,243 @@
-.container{
-  width: 100%;
-  height: 100vh;
+page {
   background-color: #F7F7F7;
 }
 
-swiper{
+.container {
   width: 100%;
-  height: calc(100vh - 345rpx - 100rpx)
 }
 
-.slideImg{
+swiper {
+  width: 100%;
+  height: calc(100vh - 345rpx - 100rpx);
+  position: relative;
+}
+
+.swiper-box {
+  position: relative;
+  width: 100%;
+}
+
+.dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  margin: 0 8rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  transition: all .6s;
+}
+
+.dot.active {
+  width: 28rpx;
+  background: #FF8D00;
+}
+
+swiper image {
   width: 100%;
   height: 100%;
 }
 
-.userInfo{
-  height: 340rpx;
+.swiperTitle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: -165rpx;
+  left: 10rpx;
+  color: #666;
+  background-color: #f7f7f7;
+  text-shadow: 5rpx 5rpx 20rpx #ccc;
+  border-radius: 20rpx;
+  padding: 10rpx;
 }
 
-.user{
+.swiperTitle::after{
+  position: absolute;
+  content: '';
+  border: 25rpx solid;
+  border-color: #f7f7f7 transparent transparent; 
+  bottom: -45rpx;
+  left: 18rpx;
+}
+
+.swiperTitle .foodName {
+  font-size: 32rpx;
+}
+
+.swiperTitle .address {
+  font-size: 28rpx;
+  margin-top: 5rpx;
+}
+
+.swiperTitle .place{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-bottom: 10rpx;
+}
+
+.userInfo {
+  height: 340rpx;
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.user {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.avatar{
-  width: 120rpx;
-  height: 120rpx;
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 50%;
   margin: 10rpx;
 }
 
-.gender image{
-  width: 40rpx;
-  height: 40rpx;
-  padding-top: 6rpx;
-  padding-left: 10rpx;
+.gender image {
+  width: 35rpx;
+  height: 35rpx;
+  margin-top: 10rpx;
 }
 
-.nickName{
-  font-size: 35rpx;
+.nickName {
+  font-size: 28rpx;
   font-weight: 600;
+  white-space: nowrap;
+  padding-top: 10rpx;
 }
 
-.tInfo{
+.tInfo {
   display: flex;
   flex-direction: row;
-  padding-left: 20rpx;
+  padding-left: 10rpx;
+  width: 300rpx;
 }
 
-.date{
+.date {
   color: #999999;
-  padding-left: 20rpx;
+  padding-left: 10rpx;
+  font-size: 28rpx;
 }
 
-.desc{
-  padding-left: 20rpx;
+.desc {
+  margin: 15rpx 30rpx 20rpx;
+  position: relative;
+}
+
+.content{
+  line-height: 46rpx;
+  margin-bottom: 150rpx;
+}
+
+
+
+.textInput {
+  position: relative;
+  position: absolute;
+  height: 120rpx;
+  width: 450rpx;
+  top: -430rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #F7F7F7;
+  border-radius: 40rpx;
+  padding: 20rpx;
+}
+
+.textInput::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 30rpx solid;
+  position: absolute;
+  bottom: -38rpx;
+  right: -12rpx;
+  transform: rotate(-25deg);
+  border-color: #F7F7F7 transparent transparent;
+}
+
+.textInput textarea {
+  width: 100%;
+  height: 100%;
+}
+
+.textInput .count {
+  position: absolute;
+  right: 20rpx;
+  bottom: 10rpx;
+  font-size: 25rpx;
+  color: #666;
+  z-index: 999;
+}
+
+.max {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.seeMore image{
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.seeMore {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -30rpx;
+  width: 100%;
+  height: 50rpx;
+  font-size: 35rpx;
+  color: #999999;
+}
+
+
+.commentBox{
+  position: absolute;
+  bottom: 0;
+  margin: 80rpx 30rpx;
 }
 
 .clickBar{
-  position: relative;
+  background-color: #FFFFFF;
+  position: fixed;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-evenly;
+  align-content: center;
+  bottom: 0;
   width: 100%;
-  height: 105rpx;
-  background-color: #ffffff;
-  box-sizing: border-box;
+  height: 60rpx;
+  z-index: 999;
 }
-
-.inputDanmu{
-  width: 50%;
-  height: 85rpx;
-  box-sizing: border-box;
-  border-radius: 50rpx;
-  padding:0 20rpx;
-  margin-left: 20rpx;
-  background-color: #F3F3F3;
-}
-
-.placeholder{
-  font-size: 26rpx;
-  color: #ccc;
-}
-
 
 .clickBar image{
-  width: 60rpx;
-  height: 60rpx;
-  margin-left: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-top: 5rpx;
 }
 
-.danmuSwith{
-  margin-left: 15rpx;
-}
-
-.danmuSwith text{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28rpx;
+.clickBar text{
+  vertical-align: text-top;
+  font-size: 22rpx;
+  color: #666;
 }

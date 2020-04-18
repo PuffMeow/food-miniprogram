@@ -1,7 +1,3 @@
-page{
-  background-color:  #F7F7F7;
-}
-
 .clickBar{
   position: absolute;
   bottom: 520rpx;
