@@ -1,0 +1,74 @@
+.container {
+  margin: 30rpx;
+}
+
+.topTitle {
+  font-size: 45rpx;
+  font-weight: 700;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  background-color: #fff;
+  height: 400rpx;
+  border-radius: 30rpx;
+  box-shadow: 5rpx 10rpx 10rpx rgba(0, 0, 0, .6);
+}
+
+.title {
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+
+.name {
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.developer,
+.artDesigner {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+  height: 300rpx;
+}
+
+.developer image,
+.artDesigner image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.concact{
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+}
+
+.wechat,.qq{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 30rpx;
+  vertical-align: top;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20rpx;
+  font-size: 28rpx;
+  transform: translateX(-50%);
+  left: 50%;
+  font-style: italic;
+}
+
+.footer view {
+  text-align: right;
+}

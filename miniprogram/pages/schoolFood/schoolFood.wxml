@@ -1,0 +1,188 @@
+<!--顶部导航栏-->
+<view class="swiperTab">
+	<view class="tabItem {{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">中心</view>
+	<view class="tabItem {{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">延生</view>
+	<view class="tabItem {{currentTab==2 ? 'on' : ''}}" data-current="2" catchtap="swichNav">千喜鹤</view>
+	<view class="tabItem {{currentTab==3 ? 'on' : ''}}" data-current="3" catchtap="swichNav">大西北</view>
+	<view class="tabItem {{currentTab==4 ? 'on' : ''}}" data-current="4" catchtap="swichNav">红高粱</view>
+	<view class="tabItem {{currentTab==5 ? 'on' : ''}}" data-current="5" catchtap="swichNav">兴业苑</view>
+</view>
+
+<!--内容-->
+<swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange" style="height:{{clientHeight?clientHeight+'px':'auto'}}">
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="tip" wx:if="{{zhongxin.length == 0 && isLoaded}}">---暂时无人分享---</view>
+			<view class="content" wx:for="{{zhongxin}}" wx:key="unique">
+				<view class="box">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="desc">{{item.desc}}</view>
+					<view class="userInfo">
+						<image class="avatar" src="{{item.avatar}}"></image>
+						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+						<view class="nickName">{{item.nickName}}</view>
+					</view>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="zhongxin" data-idx="{{index}}" mode="aspectFill"></image>
+					<view class="likeBtn">
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='zhongxin' data-_id="{{item._id}}" data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						</view>
+						<text>{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="tip" wx:if="{{yansheng.length == 0 && isLoaded}}">---暂时无人分享---</view>
+			<view class="content" wx:for="{{yansheng}}" wx:key="unique">
+				<view class="box">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="desc">{{item.desc}}</view>
+					<view class="userInfo">
+						<image class="avatar" src="{{item.avatar}}"></image>
+						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+						<view class="nickName">{{item.nickName}}</view>
+					</view>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="yansheng" data-idx="{{index}}" mode="aspectFill"></image>
+					<view class="likeBtn">
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='yansheng' data-_id="{{item._id}}" data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						</view>
+						<text>{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="tip" wx:if="{{qianxihe.length == 0 && isLoaded}}">---暂时无人分享---</view>
+			<view class="content" wx:for="{{qianxihe}}" wx:key="unique">
+				<view class="box">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="desc">{{item.desc}}</view>
+					<view class="userInfo">
+						<image class="avatar" src="{{item.avatar}}"></image>
+						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+						<view class="nickName">{{item.nickName}}</view>
+					</view>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="qianxihe" data-idx="{{index}}" mode="aspectFill"></image>
+					<view class="likeBtn">
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='qianxihe' data-_id="{{item._id}}" data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						</view>
+						<text>{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="tip" wx:if="{{daxibei.length == 0 && isLoaded}}">---暂时无人分享---</view>
+			<view class="content" wx:for="{{daxibei}}" wx:key="unique">
+				<view class="box">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="desc">{{item.desc}}</view>
+					<view class="userInfo">
+						<image class="avatar" src="{{item.avatar}}"></image>
+						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+						<view class="nickName">{{item.nickName}}</view>
+					</view>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="daxibei" data-idx="{{index}}"  mode="aspectFill"></image>
+					<view class="likeBtn">
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='daxibei' data-_id="{{item._id}}" data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						</view>
+						<text>{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="tip" wx:if="{{honggaoliang.length == 0 && isLoaded}}">---暂时无人分享---</view>
+			<view class="content" wx:for="{{honggaoliang}}" wx:key="unique">
+				<view class="box">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="desc">{{item.desc}}</view>
+					<view class="userInfo">
+						<image class="avatar" src="{{item.avatar}}"></image>
+						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+						<view class="nickName">{{item.nickName}}</view>
+					</view>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="honggaoliang" data-idx="{{index}}"  mode="aspectFill"></image>
+					<view class="likeBtn">
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='honggaoliang' data-_id="{{item._id}}" data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						</view>
+						<text>{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="tip" wx:if="{{xingyeyuan.length == 0 && isLoaded}}">---暂时无人分享---</view>
+			<view class="content" wx:for="{{xingyeyuan}}" wx:key="unique">
+				<view class="box">
+					<view class="foodName">{{item.foodName}}</view>
+					<view class="desc">{{item.desc}}</view>
+					<view class="userInfo">
+						<image class="avatar" src="{{item.avatar}}"></image>
+						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+						<view class="nickName">{{item.nickName}}</view>
+					</view>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="xingyeyuan" data-idx="{{index}}"  mode="aspectFill"></image>
+					<view class="likeBtn">
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='xingyeyuan' data-_id="{{item._id}}" data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						</view>
+						<text>{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+</swiper>
+
+<view class="pubBox" animation="{{animation}}" style="top:-{{clientHeight}}px;">
+	<image class="uploadBg" src="{{images[0]}}" mode="aspectFill"></image>
+	<view class="title">来分享校内的美味吧~</view>
+	<view class="foodName">菜名：
+		<input maxlength="10" bindinput="foodName" value="{{foodName}}" />
+		<text class="iptCount">{{foodNameCount}}/10字</text>
+	</view>
+	<view class="desc">简评：
+		<input maxlength="20" bindinput="desc" value="{{desc}}" />
+		<text class="iptCount">{{descCount}}/20字</text>
+	</view>
+	<view class="dininghall">食堂：
+		<picker bindchange="pickerChange" value="{{index}}" range="{{array}}">
+			<view class="pickerArr">{{array[index]}}</view>
+		</picker>
+	</view>
+	<view class="uploadImg" catchtap="chooseImage">
+		<image src="/images/image.png"></image>
+	</view>
+	<button class="publish" catchtap="clickedPublish">分享</button>
+</view>
+
+<view class="pubBtn" catchtap="pubBtn">
+	<image src="../../images/add2.png"></image>
+</view>
+<view class="knowMore" catchtap="knowMore">
+	<image src="../../images/knowMore.png"></image>
+</view>
+
+
+<canvas id='compress' type='2d' style="width:{{cWidth}}px; height:{{cHeight}}px;"></canvas>

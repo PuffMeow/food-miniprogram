@@ -1,22 +1,20 @@
-.wall {
+.background {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-}
-
-.background {
-  background: url('https://736b-skywechat-1301653036.tcb.qcloud.la/background.png?sign=e16216da7f12eaf48b83b05a35b63f00&t=1587053022') repeat-x 5% 0%;
+  background: url('https://736b-skywechat-1301653036.tcb.qcloud.la/background.png?sign=501a2481b12aaa3a1b88b650bd8685aa&t=1587465585') repeat-x 5% 0%;
   background-size: cover;
-  animation: bgMove 600s linear infinite;
-  filter: opacity(.6) brightness(90%);
+  animation: bgMove 300s linear infinite;
+  filter: opacity(.8) brightness(90%) blur(1px);
 }
 
 @keyframes bgMove {
   from {
     background-position: 0% 0%
   }
+
   to {
     background-position: 600% 0%
   }
@@ -36,6 +34,7 @@
   height: 380rpx;
   border-radius: 50rpx;
   position: relative;
+  box-shadow: 5rpx 10rpx 15rpx #666;
 }
 
 .avatar {
@@ -65,9 +64,10 @@
 }
 
 .gender {
-  width: 52rpx;
-  height: 52rpx;
-  margin-top: 10rpx;
+  width: 35rpx;
+  height: 35rpx;
+  margin-top: 20rpx;
+  border-radius: 50%;
 }
 
 .loginBtn {
@@ -96,46 +96,42 @@
 
 .shareCount,
 .favorCount {
-  width: 50%;
+  width: 26%;
 }
 
-.shareCount {
-  border-right: 1rpx solid #666;
+.schoolShareCount {
+  width: 48%;
 }
 
-.shareCount view:nth-child(1) {
-  font-size: 45rpx;
-  margin: 0 60rpx;
-}
-
+.schoolShareCount view:nth-child(2),
+.favorCount view:nth-child(2),
 .shareCount view:nth-child(2) {
   font-size: 25rpx;
 }
 
+.shareCount view:nth-child(1),
+.schoolShareCount view:nth-child(1),
 .favorCount view:nth-child(1) {
-  font-size: 45rpx;
-  margin: 0 60rpx;
+  font-size: 40rpx;
+  margin: 0 40rpx;
 }
 
-.favorCount view:nth-child(2) {
-  font-size: 25rpx;
-}
 
-.myLike,
 .feedback,
-.myComment,
+.aboutSchool,
 .about {
   writing-mode: vertical-lr;
   position: absolute;
-  font-size: 35rpx;
+  font-size: 28rpx;
   width: 70rpx;
   height: 160rpx;
   text-align: center;
   line-height: 70rpx;
   bottom: -265rpx;
   animation: move 5s infinite alternate;
-  transform-origin: 35rpx -80rpx;
+  transform-origin: 40rpx -100rpx;
   border-radius: 15rpx;
+  box-shadow: 5rpx 10rpx 15rpx #666;
 }
 
 
@@ -149,8 +145,8 @@
   }
 }
 
-.myLike::before,
-.myComment::before,
+
+.aboutSchool::before,
 .about::before,
 .feedback::before {
   content: '';
@@ -158,39 +154,33 @@
   border: 1rpx solid #666;
   height: 216rpx;
   top: -163rpx;
+  left: 35rpx;
   transform: scale(0.5);
 }
 
 .myLike {
   left: 60rpx;
   background: linear-gradient(to right bottom, #FEE6C9, #FAB07A);
-
 }
 
 
-.myLike::before {
-  left: 35rpx;
-}
 
-.myComment {
-  left: 212rpx;
+
+.aboutSchool {
+  left: 95rpx;
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 
 }
 
-.myComment::before {
-  left: 32rpx;
-}
+
 
 .about {
-  left: 366rpx;
+  left: 290rpx;
   background: linear-gradient(to right bottom, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
 
 }
 
-.about::before {
-  left: 32rpx;
-}
+
 
 .feedback button::after {
   border: none;
@@ -211,10 +201,6 @@
 }
 
 .feedback {
-  left: 515rpx;
+  left: 480rpx;
   background: linear-gradient(to left top, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
-}
-
-.feedback::before {
-  left: 32rpx;
 }

@@ -1,4 +1,8 @@
-const app = getApp();
+const {
+  getOpenid
+} = require('../../db/db')
+
+let openid;
 
 Page({
 
@@ -11,12 +15,14 @@ Page({
     avatar: '',
     nickName: '',
     gender: 0,
+    shareCount: 0,
+    favorCount: 0,
+    schoolFoodCount:0,
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    this.getOpenid();
+  onLoad: async function () {
     let avatar = wx.getStorageSync('avatar');
     let nickName = wx.getStorageSync('nickName');
     let gender = wx.getStorageSync('gender');
@@ -26,12 +32,20 @@ Page({
         avatar,
         nickName,
         gender,
-        showMessage: true
+        showMessage: true,
       })
     }
+
   },
-  //点击获取用户信息
-  getUserInfo(e) {
+
+  /**
+   * 点击获取用户信息
+   */
+  async getUserInfo(e) {
+    let res = await getOpenid();
+    openid = res.result.openid;
+    this.data.openid = openid;
+    wx.setStorageSync('openid', openid);
     let _this = this;
     wx.getSetting({
       success(res) {
@@ -47,7 +61,6 @@ Page({
           wx.setStorageSync("nickName", u.nickName);
           wx.setStorageSync("avatar", u.avatarUrl);
           wx.setStorageSync("gender", u.gender);
-
           let db = wx.cloud.database();
           let _ = db.command;
           db.collection('UserInfo').where({
@@ -88,28 +101,13 @@ Page({
               console.log(err);
             })
 
-        }else{
+        } else {
           wx.showToast({
-            icon:'none',
-            title: '请先授权再使用',
+            icon: 'none',
+            title: '请先登录再使用',
           })
         }
       }
-    })
-  },
-
-
-
-  getOpenid() {
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-    }).then(res => {
-      // console.log(res);
-      let openid = res.result.openid
-      wx.setStorageSync('openid', openid);
-      this.setData({
-        openid: openid
-      })
     })
   },
 
@@ -117,6 +115,37 @@ Page({
     let userid = 'user' + Date.now() + (Math.random() * 1e5).toFixed(0);
     wx.setStorageSync('userid', userid);
     return userid;
+  },
+
+
+  toMyShare() {
+    wx.navigateTo({
+      url: '../myShare/myShare'
+    })
+  },
+
+  toMyFavor() {
+    wx.navigateTo({
+      url: '../favorite/favorite'
+    })
+  },
+
+  toAboutSchool(e) {
+    wx.navigateTo({
+      url: '../aboutSchool/aboutSchool',
+    })
+  },
+
+  toAbout(e) {
+    wx.navigateTo({
+      url: '../about/about',
+    })
+  },
+
+  toSchoolShare(e) {
+    wx.navigateTo({
+      url: '../schoolShare/schoolShare',
+    })
   },
 
   /**
@@ -129,7 +158,41 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    let openid = wx.getStorageSync('openid')
+    const db = wx.cloud.database();
+
+    let p1 = db.collection('Published').where({
+        openid: openid
+      })
+      .count();
+
+    let p2 = db.collection('Published').where({
+        favorArr: openid
+      })
+      .count();
+
+    let p3 = db.collection('SchoolFood').where({
+        openid: openid
+      })
+      .count();
+
+    Promise.all([p1, p2,p3]).then(res => {
+      console.log(res);
+      this.setData({
+        shareCount: res[0].total,
+        favorCount: res[1].total,
+        schoolFoodCount:res[2].total
+      })
+    }).catch(err => {
+      console.log(err);
+      wx.showToast({
+        icon: 'none',
+        title: '出了点错...',
+      })
+    })
+
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

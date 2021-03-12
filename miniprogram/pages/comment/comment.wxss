@@ -6,6 +6,82 @@ page {
   width: 100%;
 }
 
+.dmArea {
+  width: 100%;
+  height: 280rpx;
+  position: fixed;
+  top: 142rpx;
+  z-index: 10;
+}
+
+.dmList {
+  position: absolute;
+  left: 110%;
+  z-index: 15;
+  height: 60rpx;
+  color: #000;
+}
+
+.dmItem {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 300%;
+  height: 50rpx;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 20rpx;
+}
+
+.dmItem .avatarBox {
+  display: inline-block;
+  position: relative;
+  left: 0;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 5rpx;
+}
+
+.avatarBox .dmAvatar {
+  width: 50rpx;
+  height: 50rpx;
+  border: 0;
+  border-radius: 50%;
+}
+
+.dmItem .dmGender {
+  position: absolute;
+  left: 30rpx;
+  top: 30rpx;
+  width: 25rpx;
+  height: 25rpx;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.dmItem .dmContent {
+  display: inline-block;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  white-space: nowrap;
+  margin: 0 20rpx 0 10rpx;
+}
+
+
+@keyframes dmMove {
+  0% {
+    left: 110%;
+  }
+
+  100% {
+    left: -160%;
+  }
+}
+
+
 swiper {
   width: 100%;
   height: calc(100vh - 345rpx - 100rpx);
@@ -49,8 +125,8 @@ swiper image {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: -165rpx;
-  left: 10rpx;
+  top: -170rpx;
+  left: 16rpx;
   color: #666;
   background-color: #f7f7f7;
   text-shadow: 5rpx 5rpx 20rpx #ccc;
@@ -58,11 +134,11 @@ swiper image {
   padding: 10rpx;
 }
 
-.swiperTitle::after{
+.swiperTitle::after {
   position: absolute;
   content: '';
   border: 25rpx solid;
-  border-color: #f7f7f7 transparent transparent; 
+  border-color: #f7f7f7 transparent transparent;
   bottom: -45rpx;
   left: 18rpx;
 }
@@ -76,9 +152,9 @@ swiper image {
   margin-top: 5rpx;
 }
 
-.swiperTitle .place{
-  width: 40rpx;
-  height: 40rpx;
+.swiperTitle .place {
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: middle;
   margin-bottom: 10rpx;
 }
@@ -102,10 +178,15 @@ swiper image {
   margin: 10rpx;
 }
 
+.gender{
+  margin-top: 6rpx;
+  margin-left: 5rpx;
+}
+
 .gender image {
-  width: 35rpx;
-  height: 35rpx;
-  margin-top: 10rpx;
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
 }
 
 .nickName {
@@ -129,28 +210,29 @@ swiper image {
 }
 
 .desc {
-  margin: 15rpx 30rpx 20rpx;
+  margin: 15rpx 30rpx 120rpx;
   position: relative;
 }
 
-.content{
-  line-height: 46rpx;
-  margin-bottom: 150rpx;
+.content {
+  line-height: 58rpx;
+  margin-bottom: 180rpx;
 }
 
 
 
 .textInput {
   position: relative;
-  position: absolute;
+  position: fixed;
   height: 120rpx;
   width: 450rpx;
-  top: -430rpx;
+  top: 700rpx;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #F7F7F7;
+  background-color: #fff;
   border-radius: 40rpx;
   padding: 20rpx;
+  z-index: 5;
 }
 
 .textInput::after {
@@ -159,10 +241,10 @@ swiper image {
   height: 0;
   border: 30rpx solid;
   position: absolute;
-  bottom: -38rpx;
-  right: -12rpx;
-  transform: rotate(-25deg);
-  border-color: #F7F7F7 transparent transparent;
+  bottom: -35rpx;
+  left: -12rpx;
+  transform: rotate(35deg);
+  border-color: #fff transparent transparent;
 }
 
 .textInput textarea {
@@ -189,7 +271,7 @@ swiper image {
   -webkit-box-orient: vertical;
 }
 
-.seeMore image{
+.seeMore image {
   width: 35rpx;
   height: 35rpx;
 }
@@ -200,21 +282,21 @@ swiper image {
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: -30rpx;
+  bottom: -75rpx;
   width: 100%;
   height: 50rpx;
-  font-size: 35rpx;
+  font-size: 32rpx;
   color: #999999;
 }
 
 
-.commentBox{
+.commentBox {
   position: absolute;
   bottom: 0;
   margin: 80rpx 30rpx;
 }
 
-.clickBar{
+.clickBar {
   background-color: #FFFFFF;
   position: fixed;
   display: flex;
@@ -223,21 +305,27 @@ swiper image {
   align-content: center;
   bottom: 0;
   width: 100%;
-  height: 60rpx;
+  height: 80rpx;
   z-index: 999;
 }
 
-.clickBar image{
-  width: 50rpx;
-  height: 50rpx;
+.clickBar image {
+  width: 60rpx;
+  height: 60rpx;
   background-color: #fff;
   border-radius: 50%;
   vertical-align: middle;
   margin-top: 5rpx;
 }
 
-.clickBar text{
+.clickBar text {
   vertical-align: text-top;
   font-size: 22rpx;
   color: #666;
+}
+
+.comment,
+.favor,
+.like {
+  margin-top: 8rpx;
 }

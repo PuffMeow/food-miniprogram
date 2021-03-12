@@ -1,14 +1,64 @@
-.area{
+.area {
   width: 100vw;
   height: 280vh;
   position: absolute;
   top: -90vh;
+  z-index: 1;
 }
+
+.header {
+  position: relative;
+  position: absolute;
+  top: 32%;
+  height: 80rpx;
+  width: 750rpx;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.header .hotItem{
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 55rpx;
+  color: #FE772F;
+}
+
+.header .hotItem image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 20rpx;
+  vertical-align: middle;
+}
+
+.header .hotItem text{
+  width: 600rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+
+.header::after {
+  content: " ";
+  position: absolute;
+  bottom: -1rpx;
+  right: 0;
+  height: 1px;
+  border-bottom: 1rpx solid #ccc;
+  color: #ccc;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  left: 0;
+  z-index: 2;
+}
+
 .content {
   position: relative;
   position: absolute;
   left: 7%;
-  top: 35%;
   width: 650rpx;
   height: calc(100vh - 200rpx);
   display: flex;
@@ -18,83 +68,153 @@
   border-radius: 50rpx;
   background-color: #ffffff;
   box-sizing: border-box;
+  border: 1rpx solid #ccc;
 }
 
-.content .pic{
+
+.content:first-child {
+  box-shadow: 8rpx 15rpx 20rpx #666;
+}
+
+.content .pic {
   width: 100%;
-  border-radius: 50rpx 50rpx 60rpx 0;
+  border-radius: 49rpx 49rpx 60rpx 0;
   height: calc(100vh - 200rpx - 200rpx);
 }
 
-.clickBar{
+.clickBar {
   position: absolute;
   display: flex;
   flex-direction: row;
-  bottom: 190rpx;
-  right: 8rpx;
+  bottom: 182rpx;
+  right: 10rpx;
   align-items: flex-end;
 }
 
-.clickBar image{
+.like,
+.favor,
+.comment {
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 0 10rpx;
+}
+
+.clickBar image {
   width: 60rpx;
   height: 60rpx;
-  margin: 0 10rpx;
   border-radius: 50%;
-  background-color: #ffffff;
 }
 
-.clickBar .like image{
-  width: 100rpx;
-  height: 100rpx;
+.clickBar .like image {
+  width: 80rpx;
+  height: 80rpx;
 }
 
-.clickBar .count{
+.clickBar .count {
   text-align: center;
   font-size: 25rpx;
   color: #999;
 }
 
-.footer{
+.imgCount {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  background-color: #fff;
+  width: 80rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx;
+  opacity: .8;
+}
+
+.imgCount image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.imgCount text {
+  color: #666;
+  padding: 0 6rpx;
+}
+
+.footer {
   width: 100%;
   margin-top: 50rpx;
 }
 
-.footer .title{
+.footer .title {
   font-weight: 600;
   width: 55%;
-  font-size:35rpx;
+  font-size: 35rpx;
   padding-left: 22rpx;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.footer .address{
-  font-size:30rpx;
+.footer .address {
+  color: #000;
+  font-size: 30rpx;
   padding-left: 22rpx;
   margin: 20rpx 0 0;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.address image{
-  width: 50rpx;
-  height: 50rpx;
+.address image {
+  width: 35rpx;
+  height: 32rpx;
   vertical-align: middle;
-  margin-bottom: 5rpx;
+  margin-bottom: 10rpx;
 }
 
-.desc{
+.desc {
   color: #999;
   padding: 8rpx 22rpx;
   height: 80rpx;
   font-size: 28rpx;
-  line-height: 40rpx;
+  line-height: 43rpx;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: normal;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+
+.tip image {
+  position: absolute;
+  width: 160rpx;
+  height: 160rpx;
+  z-index: 999;
+  top: 30%;
+  left: 80%;
+  animation: move 3s infinite alternate;
+}
+
+@keyframes move {
+  0% {
+    /* position: absolute; */
+    top: 20%;
+  }
+
+  100% {
+    top: 40%;
+  }
+}
+
+.noMore {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 30rpx;
+  color: #666;
 }

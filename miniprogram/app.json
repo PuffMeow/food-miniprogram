@@ -3,20 +3,23 @@
     "pages/index/index",
     "pages/publish/publish",
     "pages/comment/comment",
-    "pages/login/login",
     "pages/out/out",
     "pages/my/my",
     "pages/favorite/favorite",
     "pages/myShare/myShare",
-    "pages/myComment/myComment",
-    "pages/myLike/myLike",
-    "pages/pubVote/pubVote"
+    "pages/turntable/turntable",
+    "pages/aboutSchool/aboutSchool",
+    "pages/about/about",
+    "pages/schoolFood/schoolFood",
+    "pages/schoolShare/schoolShare",
+    "pages/aboutDininghall/aboutDininghall",
+    "pages/nearby/nearby"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FF8D00",
-    "navigationBarTitleText": "美味中转站",
+    "navigationBarTitleText": "寻味重邮",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -41,6 +44,11 @@
         "selectedIconPath": "images/my.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于获取周边信息"
+    }
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

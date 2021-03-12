@@ -10,6 +10,32 @@ function getTime() {
   return `${year}-${month}-${day} ${hour}:${minute}:${second}`
 }
 
-module.exports ={
+//节流/防抖
+function debounce(fn, wait = 50, isDebounce = true) {
+  if (isDebounce) {
+    let timer
+    return function () {
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        fn.apply(this, arguments)
+      }, wait)
+    }
+  } else {
+    let prev = new Date()
+    return function () {
+      let now = new Date()
+      if (now - prev > wait) {
+        fn.apply(this, arguments)
+        prev = new Date()
+      }
+    }
+  }
+}
+
+
+module.exports = {
   getTime,
+  debounce
 }

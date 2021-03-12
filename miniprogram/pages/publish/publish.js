@@ -1,4 +1,10 @@
-import util from '../../util/util'
+const util = require('../../util/util');
+const {
+  msgCheck
+} = require('../../db/db');
+
+let pages,
+  prevPage;
 
 Page({
 
@@ -16,10 +22,23 @@ Page({
     desc: '',
     pubBtn: true,
     checkListLength: 0,
-    flag:0, //判断上传的标志
+    flag: 0, //判断上传的标志
     //canvas
     cWidth: '',
     cHeight: '',
+    //判断敏感词flag
+    checkFoodName: '',
+    checkAddr: '',
+    checkDesc: '',
+    //进度条
+    percent: 0,
+    activeColor: '#FF8D00',
+    progressHidden: true,
+    activeMode: 'forwards',
+    //是否修改信息状态
+    isEdit: false,
+    index: '',
+    id: '',
   },
 
 
@@ -29,6 +48,51 @@ Page({
   onLoad: function (options) {
     let openid = wx.getStorageSync('openid');
     this.data.openid = openid;
+
+    pages = getCurrentPages();
+    prevPage = pages[pages.length - 2];
+
+    console.log(options);
+    if (Object.keys(options).length !== 0) {
+      wx.showLoading({
+        mask: true,
+        title: '加载中...',
+      })
+      this.data.index = options.index;
+      this.data.id = options.id;
+      const db = wx.cloud.database();
+      db.collection('Published')
+        .where({
+          _id: options.id
+        })
+        .get()
+        .then(res => {
+          console.log(res);
+          this.data.imgsLeng = res.data[0].images.length;
+          let addrCount = res.data[0].addrName.length;
+          let foodNameCount = res.data[0].foodName.length;
+          this.setData({
+            foodName: res.data[0].foodName,
+            addrName: res.data[0].addrName,
+            foodNameCount: foodNameCount,
+            addrCount: addrCount,
+            desc: res.data[0].desc,
+            images: res.data[0].images,
+            isEdit: true,
+            pubBtn: false,
+          })
+          this.checkMsg1();
+          this.checkMsg2();
+          this.checkMsg3();
+          wx.hideLoading();
+        })
+        .catch(err => {
+          console.log(err);
+          wx.showToast({
+            title: '请求超时，请重试...',
+          })
+        })
+    }
   },
 
   foodNameCount(e) {
@@ -49,23 +113,42 @@ Page({
   },
 
   userDesc(e) {
+    console.log(e);
     this.setData({
       desc: e.detail.value
     })
     this.pubBtn();
   },
 
+  /**
+   * 选择图片上传并检测图片
+   */
   chooseImage() {
     wx.chooseImage({
       count: 6 - this.data.images.length,
-      sizeType: ['original','compressed'],
-      sourceType:['album','camera'],
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
       success: res => {
-        wx.showLoading({
-          title: '正在上传中...',
-          mask: true
+        let isGif;
+        res.tempFilePaths.forEach((ele, i) => {
+          if (ele.endsWith('.gif')) {
+            isGif = true;
+            wx.showToast({
+              icon: 'none',
+              title: '不支持上传gif图',
+            })
+            return;
+          }
         })
-        this.check(res.tempFilePaths);
+        if (isGif) {
+          return;
+        } else {
+          console.log(res);
+          this.setData({
+            progressHidden: false,
+          })
+          this.check(res.tempFilePaths);
+        }
       }
     })
   },
@@ -74,64 +157,88 @@ Page({
     console.log('进入检测图片')
     let checkList = tempFilePaths;
     let i = 0; //递归计数
-
     let cloudCheck = (temp, origin) => {
       console.log('云函数调用')
       wx.getFileSystemManager().readFile({
         filePath: temp,
         success: res => {
           wx.cloud.callFunction({
-            name: 'imgCheck',
-            data: {
-              value: res.data
-            },
-          }).then(res => {
-            console.log('返回结果', res)
-            if (res.result.errCode == 87014) {
-              wx.showToast({
-                title: '无法上传违法违规图片',
-                icon: 'none'
-              })
-              this.setData({
-                checkListLength: this.data.checkListLength - 1
-              })
-              setTimeout(()=>{this.pubBtn();},1500)
-              return;
-            } else if (res.result.errCode == 0) {
-              this.data.images.push(origin);
-              this.setData({
-                images: this.data.images,
-                flag:this.data.flag+1,
-                checkListLength: checkList.length
-              })
-              if (this.data.flag == this.data.checkListLength) {
-                wx.hideLoading({
-                  complete: (res) => {
-                    wx.showToast({
-                      title: '上传成功',
-                    })
-                    this.setData({
-                      flag:0
-                    })
-                    this.pubBtn();
-                  },
+              name: 'imgCheck',
+              data: {
+                value: res.data
+              },
+            }).then(res => {
+              console.log('返回结果', res)
+              if (res.result.errCode == 87014) {
+                wx.showToast({
+                  title: '无法上传违法违规图片',
+                  icon: 'none'
                 })
+                this.data.checkListLength -= 1;
+                this.setData({
+                  // checkListLength: this.data.checkListLength - 1,
+                  percent: 0,
+                  progressHidden: true
+                })
+                setTimeout(() => {
+                  wx.hideLoading();
+                  this.pubBtn();
+                }, 1200)
+                return;
+              } else if (res.result.errCode == 0) {
+                this.data.images.push(origin);
+                this.data.flag += 1;
+                this.data.checkListLength = checkList.length;
+                this.setData({
+                  images: this.data.images,
+                  // flag: this.data.flag + 1,
+                  // checkListLength: checkList.length,
+                })
+                if (this.data.flag == this.data.checkListLength) {
+                  this.data.flag = 0;
+                  this.setData({
+                    // flag: 0,
+                    percent: 100
+                  })
+                  this.pubBtn();
+
+                  setTimeout(() => {
+                    this.setData({
+                      progressHidden: true,
+                      percent: 0
+                    })
+                  }, 1500)
+                  wx.hideLoading();
+                } else {
+                  let percent = this.data.percent;
+                  this.setData({
+                    percent: percent += Math.ceil(100 / this.data.checkListLength)
+                  })
+                  wx.hideLoading();
+                }
               }
-            }
-          })
+            })
+            .catch(err => {
+              console.log(err);
+              wx.hideLoading();
+              wx.showToast({
+                icon: 'none',
+                title: '请求超时,请重试',
+              })
+            })
         }
       });
     };
 
-  //照片压缩
+    //照片压缩
     let compress = (checkList, i) => {
       console.log('压缩图片')
-      let path = checkList[i]; 
-      console.log(path);
+      let path = checkList[i];
+      // console.log(path);
       let render = (path, width, height) => {
-        console.log(width, height);
+        // console.log(width, height);
         wx.createSelectorQuery()
-          .select('#compress') 
+          .select('#compress')
           .fields({
             node: true,
           })
@@ -140,11 +247,11 @@ Page({
             let canvas = res[0].node;
             canvas.width = width;
             canvas.height = height;
-            let ctx = canvas.getContext('2d'); 
-            let img = canvas.createImage(); 
+            let ctx = canvas.getContext('2d');
+            let img = canvas.createImage();
             // console.log('新建的img对象', img);
             img.src = path;
-            console.log(img.src)
+            // console.log(img.src)
             img.onload = () => {
               ctx.clearRect(0, 0, width, height);
               ctx.drawImage(img, 0, 0, width, height);
@@ -155,8 +262,8 @@ Page({
                 fileType: 'jpg',
                 quality: 0.8,
                 success: res => {
-                  console.log('开始调用云函数', res)
-                  cloudCheck(res.tempFilePath, path); 
+                  // console.log('开始调用云函数', res)
+                  cloudCheck(res.tempFilePath, path);
                   if (++i < checkList.length) {
                     compress(checkList, i);
                   };
@@ -170,7 +277,7 @@ Page({
       wx.getImageInfo({
         src: path,
         success: res => {
-          console.log('获取到图片信息开始计算', res)
+          console.log('获取到图片信息', res);
           let aspectRatio = res.width / res.height;
           let width, height;
           // 照片比例不超过21: 9
@@ -183,24 +290,23 @@ Page({
               width = Math.floor(height * aspectRatio);
             }
             this.setData({
-              cWidth: width, 
+              cWidth: width,
               cHeight: height
             });
             render(path, width, height);
           } else {
-            wx.hideLoading({
-              complete: (res) => {
-                wx.showToast({
-                  icon: 'none',
-                  title: '图片太大啦',
-                })
-              },
+            wx.hideLoading();
+            wx.showToast({
+              icon: 'none',
+              title: '过大的图片无法上传',
+            })
+            this.setData({
+              progressHidden: true
             })
           }
         }
       })
     };
-
     compress(checkList, i);
   },
 
@@ -213,6 +319,9 @@ Page({
     })
   },
 
+  /**
+   * 移除图片
+   */
   removeImg(e) {
     // console.log(e)
     let idx = e.currentTarget.dataset.idx;
@@ -239,110 +348,219 @@ Page({
     }
   },
 
-  msgCheck(myContent, toast) {
-    return new Promise((resolve, reject) => {
-      wx.cloud.callFunction({
-          name: 'msgCheck',
-          data: {
-            content: myContent,
-          }
-        })
-        .then(res => {
-          // console.log(res);
-          if (res.result.errCode == 87014) {
-            wx.showToast({
-              title: toast,
-              duration: 3000,
-              icon: "none"
-            })
-            resolve(false);
-          }
-          if (res.result.errCode == 0) {
-            resolve(true);
-          }
-        })
-    })
+  //检测三项的文本是否有敏感词
+  async checkMsg1(e) {
+    console.log('检测第1项文本')
+    this.data.checkFoodName = await msgCheck(this.data.foodName, '第一项内容中含有敏感词');
   },
 
-  //上传图片
+  async checkMsg2(e) {
+    console.log('检测第2项文本')
+    this.data.checkAddr = await msgCheck(this.data.addrName, '第二项内容中含有敏感词');
+  },
+
+  async checkMsg3(e) {
+    console.log('检测第3项文本')
+    this.data.checkDesc = await msgCheck(this.data.desc, '第三项内容中含有敏感词');
+  },
+
+  /**
+   * 点击分享后开始上传图片
+   */
   uploadImg(imgPath) {
     return new Promise((resolve, reject) => {
-      wx.cloud.uploadFile({
-          cloudPath: new Date().getTime() + '.png',
-          filePath: imgPath
-        })
-        .then(res => {
-          this.data.cloudImg.push(res.fileID);
-          resolve(res);
-        })
-        .catch(err => {
-          reject(err);
-        })
+      if (String(imgPath).startsWith('cloud')) {
+        this.data.cloudImg.push(imgPath);
+        resolve();
+      } else {
+        console.log('开始上传图片')
+        wx.cloud.uploadFile({
+            cloudPath: 'indexImgs/' + new Date().getTime() + '.png',
+            filePath: imgPath
+          })
+          .then(res => {
+            this.data.cloudImg.push(res.fileID);
+            if (this.data.cloudImg.length === this.data.images.length) {
+              this.setData({
+                percent: 100
+              })
+              setTimeout(() => {
+                this.setData({
+                  progressHidden: true,
+                })
+              }, 1500)
+            } else {
+              this.setData({
+                activeMode: 'forwards',
+                percent: this.data.percent += Math.ceil(100 / this.data.images.length)
+              })
+            }
+            resolve(res);
+          })
+          .catch(err => {
+            reject(err);
+          })
+
+      }
     })
   },
 
-  //发布
-  async publishFood(e) {
-    wx.showLoading({
-      title: '正在分享中...',
-      mask: true
-    })
-    let checkFoodName = await this.msgCheck(this.data.foodName, '第一项内容中含有敏感词');
-    let checkAddr = await this.msgCheck(this.data.addrName, '第二项内容中含有敏感词')
-    let checkDesc = await this.msgCheck(this.data.desc, '第三项内容中含有敏感词')
-    if (checkFoodName && checkAddr && checkDesc) {
 
-      await this.data.images.reduce(async (prev, ele, i) => {
-        console.log('调用上传图片', i, ele)
-        await prev;
-        return this.uploadImg(ele);
-      }, Promise.resolve())
+  /**
+   * 点击分享按钮
+   */
+  publishFood(e) {
+    //修改信息
+    if (this.data.progressHidden === false) {
+      return;
+    }
+    util.debounce(this.publish(), 500);
+  },
 
-      wx.cloud.callFunction({
-        name: 'addShareFood',
-        data: {
-          openid: this.data.openid,
-          images: this.data.cloudImg,
-          foodName: this.data.foodName,
-          addrName: this.data.addrName,
-          desc: this.data.desc,
-          commentNum: 0,
-          favorNum: 0,
-          likeNum: 0,
-          pubTime: util.getTime(),
-          likeArr:[],
-          favorArr:[],
-          commentArr:[]
-        }
-      }).then(res => {
-        console.log(res);
-      }).catch(err => {
-        console.log(err);
+  async publish() {
+    if (this.data.isEdit === true) {
+      wx.showLoading({
+        title: '努力修改中...',
+        mask: true
       })
 
-      wx.switchTab({
-        url: '../index/index',
-        complete: () => {
-          let page = getCurrentPages().pop();
-          if (page == undefined || page == null) {
-            return;
+      if (this.data.images.length <= this.data.imgsLeng) {
+        this.setData({
+          progressHidden: true
+        })
+      } else {
+        this.setData({
+          activeMode: 'backwards',
+          progressHidden: false
+        })
+      }
+
+      console.log('修改信息');
+      if (this.data.checkFoodName && this.data.checkAddr && this.data.checkDesc) {
+        await this.data.images.reduce(async (prev, ele, i) => {
+          console.log('调用上传图片', i, ele)
+          await prev;
+          return this.uploadImg(ele);
+        }, Promise.resolve())
+
+        wx.cloud.callFunction({
+          name: 'addShareFood',
+          data: {
+            option: 'edit',
+            id: this.data.id,
+            images: this.data.cloudImg,
+            foodName: this.data.foodName,
+            addrName: this.data.addrName,
+            desc: this.data.desc,
           }
-          wx.showToast({
-            title: '分享成功',
-            mask:true,
-            duration: 2000
+        }).then(res => {
+          console.log(res);
+          console.log(prevPage);
+          let prevFoodName = "foodData[" + this.data.index + "].foodName";
+          let prevAddrName = "foodData[" + this.data.index + "].addrName";
+          let prevDesc = "foodData[" + this.data.index + "].desc";
+          let prevImgs = "foodData[" + this.data.index + "].images";
+          prevPage.setData({
+            [prevFoodName]: res.result.data[0].foodName,
+            [prevAddrName]: res.result.data[0].addrName,
+            [prevDesc]: res.result.data[0].desc,
+            [prevImgs]: res.result.data[0].images,
           })
+          wx.hideLoading();
+
           setTimeout(() => {
-            page.onLoad();
-          }, 2000)
-        },
-        fail: () => {
+            wx.navigateBack({
+              complete: (res) => {
+                wx.showToast({
+                  mask: true,
+                  title: '修改成功',
+                })
+              },
+            })
+          }, 1200)
+        }).catch(err => {
+          console.log(err);
+          wx.hideLoading();
           wx.showToast({
             icon: 'none',
-            title: '好像出了点差错...',
+            title: '请求超时，请重试...',
+          })
+        })
+      }
+    } else {
+      wx.showLoading({
+        title: '努力上传中...',
+        mask: true
+      })
+      this.setData({
+        activeMode: 'backwards',
+        progressHidden: false
+      })
+      console.log('发布')
+      setTimeout(async () => {
+        if (this.data.checkFoodName === true && this.data.checkAddr === true && this.data.checkDesc === true) {
+          console.log('进入上传图片函数')
+          await this.data.images.reduce(async (prev, ele, i) => {
+            console.log('调用上传图片', i, ele)
+            await prev;
+            return this.uploadImg(ele);
+          }, Promise.resolve())
+
+          wx.cloud.callFunction({
+            name: 'addShareFood',
+            data: {
+              option: 'shareFood',
+              openid: this.data.openid,
+              images: this.data.cloudImg,
+              foodName: this.data.foodName,
+              addrName: this.data.addrName,
+              desc: this.data.desc,
+              commentNum: 0,
+              favorNum: 0,
+              likeNum: 0,
+              pubTime: util.getTime(),
+              likeArr: [],
+              favorArr: [],
+              commentArr: []
+            }
+          }).then(res => {
+            console.log(res);
+            setTimeout(() => {
+              wx.switchTab({
+                url: '../index/index',
+                complete: () => {
+                  let page = getCurrentPages().pop();
+                  if (page == undefined || page == null) {
+                    return;
+                  }
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '分享成功',
+                    mask: true,
+                    duration: 1000
+                  })
+                  setTimeout(() => {
+                    page.onLoad();
+                  }, 1000)
+                },
+                fail: () => {
+                  wx.hideLoading();
+                  wx.showToast({
+                    icon: 'none',
+                    title: '请求超时，请重试...',
+                  })
+                }
+              })
+            }, 1200)
+          }).catch(err => {
+            console.log(err);
+            wx.showToast({
+              icon: 'none',
+              title: '请求超时，请重试...',
+            })
           })
         }
-      })
+      }, 500)
     }
   },
 

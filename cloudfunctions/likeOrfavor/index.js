@@ -11,44 +11,109 @@ const _ = db.command;
 // 云函数入口函数
 exports.main = async (event, context) => {
   if (event.option == 'like') {
-    return await db.collection('Published').doc(event.id).update({
-        data: {
-          likeArr: _.push(event.openid)
-        }
-      })
-      .then(res => {
-        return res;
-      })
-      .catch(err => {
-        return err;
-      })
+    await db.collection('Published').doc(event.id).update({
+      data: {
+        likeArr: _.push(event.openid),
+        likeNum: _.inc(1),
+        statusTotal: _.inc(1),
+      }
+    })
+    const res = await db.collection('Published').doc(event.id).field({
+      likeNum: true,
+      likeArr: true
+    }).get();
+    return res;
   }
 
+
+  if (event.option == 'schoolFoodLike') {
+    await db.collection('SchoolFood').doc(event.id).update({
+      data: {
+        likeArr: _.push(event.openid),
+        likeNum: _.inc(1)
+      }
+    })
+    const res = await db.collection('SchoolFood').doc(event.id).field({
+      likeNum: true,
+      likeArr: true
+    }).get();
+    return res;
+  }
+
+
   if (event.option == 'unlike') {
-    return await db.collection('Published').doc(event.id).update({
-        data: {
-          likeArr: _.pull(event.openid)
-        }
-      })
-      .then(res => {
-        return res;
-      })
-      .catch(err => {
-        return err;
-      })
+    await db.collection('Published').doc(event.id).update({
+      data: {
+        likeArr: _.pull(event.openid),
+        likeNum: _.inc(-1),
+        statusTotal: _.inc(-1),
+      }
+    })
+    const res = await db.collection('Published').doc(event.id).field({
+      likeNum: true,
+      likeArr: true
+    }).get();
+    return res;
+  }
+
+  if (event.option == 'schoolFoodUnlike') {
+    await db.collection('SchoolFood').doc(event.id).update({
+      data: {
+        likeArr: _.pull(event.openid),
+        likeNum: _.inc(-1)
+      }
+    })
+    const res = await db.collection('SchoolFood').doc(event.id).field({
+      likeNum: true,
+      likeArr: true
+    }).get();
+    return res;
   }
 
   if (event.option == 'favor') {
-    return await db.collection('Published').doc(event.id).update({
-        data: {
-          favorArr: _.push(event.openid)
-        }
-      })
-      .then(res => {
-        return res;
-      })
-      .catch(err => {
-        return err;
-      })
+    await db.collection('Published').doc(event.id).update({
+      data: {
+        favorArr: _.push(event.openid),
+        favorNum: _.inc(1),
+        statusTotal: _.inc(1),
+      }
+    })
+    const res = await db.collection('Published').doc(event.id).field({
+      favorNum: true,
+      favorArr: true
+    }).get();
+    return res;
   }
+
+  if (event.option == 'unfavor') {
+    await db.collection('Published').doc(event.id).update({
+      data: {
+        favorArr: _.pull(event.openid),
+        favorNum: _.inc(-1),
+        statusTotal: _.inc(-1),
+      }
+    })
+    const res = await db.collection('Published').doc(event.id).field({
+      favorNum: true,
+      favorArr: true
+    }).get();
+    return res;
+  }
+
+  if (event.option == 'dininghallLike') {
+    await db.collection('AboutDininghall').doc(event.id).update({
+      data: {
+        likeArr: _.push(event.openid),
+        likeNum: _.inc(1)
+      }
+    })
+
+    const res = await db.collection('AboutDininghall').doc(event.id).field({
+      likeArr: true,
+      likeNum: true
+    }).get();
+    return res;
+
+  }
+
 }

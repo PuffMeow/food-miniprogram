@@ -1,14 +1,28 @@
 <view class="container">
+	<goback />
+	<view class="dmArea">
+		<view class='dmList' wx:for="{{ dmData }}" wx:key="_id" style="top:{{ item.top }}%; animation: dmMove 8s linear {{ index*2 }}s" data-index="{{index}}" bindanimationend="animationend">
+			<view class='dmItem'>
+				<view class='avatarBox'>
+					<image src='{{item.avatar}}' class='dmAvatar' mode='aspectFit'></image>
+					<image src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}" class='dmGender' mode='aspectFit'></image>
+				</view>
+				<text class='dmContent'>{{ item.content }}</text>
+			</view>
+		</view>
+	</view>
+
+
 	<view class='swiper-box'>
 		<swiper indicator-dots="{{indicatorDots}}" autoplay interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange" circular="{{circular}}">
-			<block wx:for="{{images}}" wx:key="*this">
+			<block wx:for="{{pageData.images}}" wx:key="index">
 				<swiper-item>
-					<image src="{{item}}" mode="aspectFill" />
+					<image src="{{item}}" mode="aspectFill" bindtap="preview" data-idx="{{index}}" />
 				</swiper-item>
 			</block>
 		</swiper>
 		<view class="dots">
-			<block wx:for="{{images}}" wx:key="*this">
+			<block wx:for="{{pageData.images}}" wx:key="*this">
 				<view class="dot {{index == currentSwiper ? 'active' : ''}}"></view>
 			</block>
 		</view>
@@ -24,38 +38,40 @@
 						<image src="{{gender == 0 ? '/images/rice.png' : gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
 					</view>
 				</view>
-				<view class="date">{{pubTime}}</view>
+				<view class="date">{{pageData.pubTime}}</view>
 			</view>
 
 			<view class="swiperTitle">
-				<text class="foodName">{{foodName}}</text>
-				<view class="address">{{addrName}}
-					<image class="place" src="/images/tag.png"></image>
+				<text class="foodName">{{pageData.foodName}}</text>
+				<view class="address">{{pageData.addrName}}
+					<image class="place" src="/images/indexTag.png"></image>
 				</view>
 			</view>
 
 			<view class="clickBar">
-				<view class="comment">
-					<image src="/images/comment.png" /> <text>{{1000}}</text>
+				<view class="comment" bindtap="comment">
+					<image src="/images/comment.png" /> <text>{{pageData.commentNum}}</text>
 				</view>
-				<view class="favor">
-					<image src="/images/favor.png" /> <text>{{4443}}</text>
+				<view class="favor" bindtap="favorBtn">
+					<image src="{{pageData.isFavor ? '/images/favor.png' : '/images/unfavor.png'}}" animation="{{favorAnimation}}"></image> <text>{{pageData.favorNum}}</text>
 				</view>
-				<view class="like">
-					<image src="/images/like.png" /> <text>{{233}}</text>
+				<view class="like" bindtap="likeBtn">
+					<image src="{{pageData.isLike ? '/images/like.png':'/images/unlike.png'}}" animation="{{likeAnimation}}"></image> <text>{{pageData.likeNum}}</text>
 				</view>
 			</view>
 
 			<view class="inputBox">
-				<view class="textInput" wx:if="{{isInput}}">
-					<textarea focus="{{isInput}}" bindblur="blurInput" bindconfirm="endInput" maxlength="30" placeholder="是不是馋了？说点什么吧~">
+				<view class="textInput" hidden="{{!isInput}}">
+					<textarea value="{{inputContent}}" focus="{{isInput}}" bindinput="dmInput" bindblur="inputBlur" bindconfirm="endInput" maxlength="30" placeholder="是不是馋了？说点什么吧~">
           </textarea>
-					<text class="count">{{count}}/30字</text>
+					<text class="count">{{dmCount}}/30字</text>
 				</view>
 			</view>
+
 		</view>
+
 		<view class="desc">
-			<view class="{{showMore ? 'max':''}} content">{{desc}}</view>
+			<text space="nbsp" class="{{showMore ? 'max':''}} content" decode="true">{{pageData.desc}}</text>
 		</view>
 		<view class="seeMore" bindtap="seeMore" hidden="{{!showMore}}">
 			<image src="/images/seeMore.png"></image>

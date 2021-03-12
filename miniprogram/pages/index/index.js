@@ -1,7 +1,14 @@
 const app = getApp();
+import {
+  getOpenid,
+  getData,
+  getHotData
+} from '../../db/db'
 
-let openid = wx.getStorageSync('openid');
+let userid;
 let total = 0;
+let getDataLength = 6; //每次加载更多时追加的数量
+
 Page({
 
   /**
@@ -9,275 +16,304 @@ Page({
    */
   data: {
     foodData: [],
-    isFirst: true
+    hotData: [],
+    isRequest: false,
+    isDataGtDLength: true,
+    openid: '',
+    height: '',
+    isLiking: false,
+    isFavoring: false,
+    isFirst: false,
+    favorAnimation: [],
+    likeAnimation: [],
+    isLoaded: false,
   },
 
+  /**
+   * 卡片移动触发
+   */
   cardMove(e) {
-    // console.log(e);
-    let index = e.target.dataset.idx;
-    if (e.detail.y > 430 || e.detail.y < -430) {
+    // console.log('卡片移动了',e);
+    if (this.data.isRequest) return;
+    if (e.detail.y > this.data.height - 130 || e.detail.y < -(this.data.height - 105)) {
+      let index = e.target.dataset.idx;
       // console.log(index)
-      // console.log(e.detail)
-      this.data.foodData.splice(index, 1)
-      if (this.data.foodData.length != 0) {
+      this.data.foodData.splice(index, 1); //删除当前卡片
+      //删除卡片移动滑动手指
+      this.setData({
+        isFirst: false
+      })
+      wx.setStorageSync('isFirst', false)
+      if (this.data.foodData.length === 2) {
+        if (this.data.isDataGtDLength && total !== 0) {
+          wx.showLoading({
+            title: '加载更多...',
+            mask: true,
+          })
+        }
+        // console.log(total);
+        if (total >= getDataLength) {
+          this.data.isRequest = true;
+          getData(getDataLength, total - getDataLength, 'asc')
+            .then(res => {
+              console.log('开始获取数据', res);
+              app.checkArrStatus(res.data, true, this.data.foodData, this.data.openid);
+              this.setData({
+                foodData: this.data.foodData,
+                isRequest: false,
+                favorAnimation: [],
+                likeAnimation: [],
+              })
+              total -= getDataLength;
+              console.log(total);
+              setTimeout(() => {
+                wx.hideLoading();
+              }, 1200);
+            }).catch(err => {
+              // console.log(err);
+              wx.hideLoading();
+              wx.showToast({
+                title: '请求超时，请重试...',
+                icon: 'none',
+              })
+            })
+        } else if (total < getDataLength && total > 0) {
+          this.data.isRequest = true;
+          this.data.isDataGtDLength = false;
+          getData(total, 0, 'asc')
+            .then(res => {
+              console.log('小于获取的数据并且大于0', res);
+              app.checkArrStatus(res.data, true, this.data.foodData, this.data.openid);
+              this.setData({
+                foodData: this.data.foodData,
+                isRequest: false,
+                favorAnimation: [],
+                likeAnimation: [],
+              })
+              total = 0;
+              // console.log(total);
+              setTimeout(() => {
+                wx.hideLoading();
+              }, 1200)
+            }).catch(err => {
+              console.log(err);
+              wx.showToast({
+                icon: 'none',
+                title: '请求超时，请重试...',
+              })
+            })
+        } else if (total <= 0) {
+          setTimeout(() => {
+            this.setData({
+              foodData: this.data.foodData
+            })
+            wx.hideLoading();
+          }, 1200);
+        }
+      }
+
+      if (this.data.foodData.length !== 0) {
         this.data.foodData[this.data.foodData.length - 1].isMove = false;
+        this.setData({
+          foodData: this.data.foodData
+        })
       } else {
+        //当数据等于0的时候，开始重新请求追加最新的数据
+        this.setData({
+          foodData: this.data.foodData
+        })
+        this.data.isRequest = true;
         wx.showToast({
           icon: 'none',
           title: '暂无更多,自动刷新',
+          mask: true,
         })
         setTimeout(() => {
-          this.onLoad()
-        }, 1000)
+          this.data.isRequest = false;
+          this.onLoad();
+        }, 1200);
       }
-      this.setData({
-        foodData: this.data.foodData
-      })
-      // console.log(index)
     }
   },
 
-  touchEnd(e) {
-    if (this.data.foodData.length <= 2) {
-      if (this.data.isFirst == true) {
-        wx.showToast({
-          icon: 'loading',
-          title: '加载更多...',
-          duration: 2500,
-          mask: true
-        })
-      }
-      console.log(total);
-      if (total >= 5) {
-        console.log('开始调用获取数据函数')
-        this.getData(5, total - 5).then(res => {
-            console.log(res);
-            let newData = res.data.concat(this.data.foodData)
-            // console.log(newData)
-            newData.forEach((ele, i) => {
-              // console.log(ele);
-              ele.isMove = true;
-              if (i == newData.length - 1) {
-                ele.isMove = false;
-              }
-            })
-            this.setData({
-              foodData: newData,
-            })
-            total -= 5;
-            console.log(total)
-          })
-          .catch(err => {
-            console.log(err);
-          })
-      } else if (total < 5) {
-        if (total != 0) {
-          console.log('total小于5')
-          this.getData(total, 0).then(res => {
-            console.log(res);
-            let newData = res.data.concat(this.data.foodData)
-            // console.log(newData)
-            newData.forEach((ele, i) => {
-              // console.log(ele);
-              ele.isMove = true;
-              if (i == newData.length - 1) {
-                ele.isMove = false;
-              }
-            })
-            this.setData({
-              foodData: newData
-            })
-            setTimeout(() => {
-              wx.hideLoading()
-            }, 2000)
-            total = 0;
-            console.log(total)
-          })
-        }
-      }
-    }
+  /**
+   * 点击关闭滑动手指
+   */
+  upAndDown() {
+    this.setData({
+      isFirst: false
+    })
+    wx.setStorageSync('isFirst', false)
   },
+
+  /** 
+   * 点赞按钮触发
+   */
+  likeBtn(e) {
+    app.likeMain(e, this, 'foodData')
+  },
+
+  /** 
+   * 收藏按钮触发
+   */
+  favorBtn(e) {
+    app.favorMain(e, this, 'foodData');
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    let system = wx.getSystemInfoSync();
+    // console.log(system);
+    this.data.height = system.windowHeight;
+    this.data.isDataGtDLength = true;
     wx.showLoading({
       title: '正在加载...',
       mask: true
     })
     const db = wx.cloud.database();
-    let res = await db.collection('Published').count();
-    console.log(res);
-    total = res.total;
-    this.getData(5, total - 5)
-      .then(res => {
-        total -= 5;
-        console.log(total)
-        res.data.forEach((ele, i) => {
-          // console.log(ele);
-          ele.isMove = true;
-          if (i == res.data.length - 1) {
-            ele.isMove = false;
-          }
-        })
-        this.setData({
-          foodData: res.data
-        })
-        setTimeout(() => {
-          wx.hideLoading()
-        }, 3000)
+    try {
+      let res = await db.collection('Published').count();
+      console.log(res);
+      total = res.total;
+    } catch (err) {
+      console.log(err);
+      wx.showToast({
+        title: '请求超时，请重试...',
       })
-      .catch(err => {
-        wx.hideLoading({
-          complete: (res) => {
-            wx.showToast({
-              icon: 'none',
-              title: '出了点错...',
-            })
-          },
-        })
+    }
+    let openid = wx.getStorageSync('openid');
+    if (openid !== '') {
+      this.data.openid = openid;
+    } else {
+      let openidRes = await getOpenid();
+      this.data.openid = openidRes.result.openid;
+      wx.setStorage({
+        data: openidRes.result.openid,
+        key: 'openid',
       })
-  },
+    }
 
-  //获取主页的数据
-  getData(limit, skip) {
-    console.log('调用获取数据函数')
-    return new Promise((resolve, reject) => {
-      const db = wx.cloud.database();
-      db.collection('Published')
-        .orderBy('pubTime', 'asc')
-        .limit(limit)
-        .skip(skip)
-        .get()
+    if (total >= 8) {
+      getData(8, total - 8, 'asc')
         .then(res => {
-          resolve(res);
-        })
-        .catch(err => {
-          reject(err);
-        })
-    })
-  },
-
-
-  //点赞按钮
-  likeBtn(e) {
-    console.log(e);
-    let id = e.currentTarget.dataset._id;
-    let index = e.currentTarget.dataset.idx;
-    let isLike = "foodData[" + index + "].isLike";
-    console.log(isLike)
-    this.setData({
-      [isLike]: !this.data.foodData[index].isLike
-    })
-    if (this.data.foodData[index].isLike == true) {
-      wx.cloud.callFunction({
-          name: 'likeOrfavor',
-          data: {
-            option: 'like',
-            id: id,
-            openid: openid
-          }
-        })
-        .then(res => {
-          console.log(res);
+          total -= 8;
+          // console.log(total)
+          // console.log(res);
+          let arr = res.data;
+          app.checkArrStatus(arr, true, null, this.data.openid);
+          this.setData({
+            favorAnimation: [],
+            likeAnimation: [],
+            foodData: res.data,
+            isLoaded: true
+          })
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 1800)
+        }).catch(err => {
+          console.log(err);
+          wx.hideLoading();
           wx.showToast({
             icon: 'none',
-            mask: true,
-            duration: 500,
-            title: '点赞成功',
+            title: '请求超时，请重试...',
           })
         })
-        .catch(err => {
-          console.log(err);
-        })
-    }
-    if (this.data.foodData[index].isLike == false) {
-      wx.cloud.callFunction({
-          name: 'likeOrfavor',
-          data: {
-            option: 'unlike',
-            id: id,
-            openid: openid
-          }
-        })
+    } else {
+      getData(total, 0, 'asc')
         .then(res => {
-          console.log(res);
-
-        })
-        .catch(err => {
-          console.log(err);
+          // console.log(res.data)
+          total = 0;
+          app.checkArrStatus(res.data, true, null, this.data.openid);
+          this.setData({
+            favorAnimation: [],
+            likeAnimation: [],
+            isLoaded: true,
+            foodData: res.data
+          })
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 1800)
+        }).catch(err => {
+          // console.log(err);
+          wx.hideLoading();
+          wx.showToast({
+            icon: 'none',
+            title: '请求超时，请重试...',
+          })
         })
     }
   },
 
-
-
-
-  toComment(e) {
-    let userid = wx.getStorageSync('userid');
-    console.log(e);
+  toHotComment(e) {
+    // console.log(e);
     let _id = e.currentTarget.dataset._id;
+    let index = this.data.foodData.findIndex(v => v._id === _id);
+    // console.log('hotIndex', index);
     if (userid) {
       wx.navigateTo({
-        url: '../comment/comment?_id=' + _id
+        url: `../comment/comment?_id=${_id}&index=${index}`
       })
     } else {
-      wx.switchTab({
-        url: '../my/my',
-        success: (res) => {
-          wx.showToast({
-            icon: 'none',
-            title: '请先登录'
-          })
-        }
-      })
+      app.toLogin();
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  toComment(e) {
+    if (e.currentTarget.dataset.ismove === false) {
+      // console.log(e);
+      let _id = e.currentTarget.dataset._id;
+      let index = e.currentTarget.dataset.idx;
+      if (userid) {
+        wx.navigateTo({
+          url: `../comment/comment?_id=${_id}&index=${index}`
+        })
+      } else {
+        app.toLogin();
+      }
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    userid = wx.getStorageSync('userid');
+    if (app.globalData.isAnotherPage === true) {
+      this.onLoad();
+      app.globalData.isAnotherPage = false;
+    }
+    this.setData({
+      favorAnimation: [],
+      likeAnimation: [],
+    })
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+    getHotData()
+      .then(res => {
+        // console.log(res);
+        this.setData({
+          hotData: res.data
+        })
+      }).catch(err => {
+        // console.log(err);
+        wx.showToast({
+          icon: 'none',
+          title: '获取热门数据失败',
+        })
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onReady: function () {
+    let isFirst = wx.getStorageSync('isFirst');
+    if (isFirst === false) {
+      this.setData({
+        isFirst: isFirst
+      })
+    } else {
+      this.setData({
+        isFirst: true
+      })
+    }
   }
 })

@@ -1,0 +1,49 @@
+<view class="bgShadow"></view>
+<view class="turntable" animation="{{animationData}}" bindtransitionend="turnEnd">
+	<view class="line" wx:for="{{turntableData}}" wx:key="unique" style="transform: rotate({{item.lineTurn}})"></view>
+
+	<view class="itemList" wx:for="{{turntableData}}" wx:key="unique">
+		<view class="item" style="transform: rotate({{item.turn}})">
+			<view class="itemText">{{item.name}}</view>
+			<image src="{{item.image}}" mode="aspectFill"></image>
+		</view>
+	</view>
+</view>
+<view class="pointer"></view>
+
+<view class="reset" hover-class="activeReset" bindtap="reset">重置</view>
+<button class="btn" hover-class="activeBtn" bindtap="turn">转动</button>
+<view hover-class="activeChoose" class="choose" bindtap="choose">选择</view>
+
+
+<view class="selectArea" style="bottom:-{{screenHeight}}px;" animation="{{upAnimation}}">
+	<view class="done" catchtap="done">完成</view>
+	<view class="cancel" catchtap="cancel">取消</view>
+	<view class="container">
+		<scroll-view class="content" scroll-y="true" scroll-with-animation="true" wx:if="{{foodData.length != 0}}" bindscrolltolower="getMoreData">
+			<view class="food" wx:for="{{foodData}}" wx:key="index" data-idx="{{index}}" data-img="{{item.images[0]}}" data-name="{{item.foodName}}" bindtap="chooseFood">
+				<image src="{{item.images[0]}}" mode="aspectFill"></image>
+				<!-- 选中 -->
+				<image class="userChoose" src="/images/yes.png" wx:if="{{item.isChoose}}"></image>
+				<text>{{item.foodName}}</text>
+			</view>
+		</scroll-view>
+
+		<view class="tip" wx:if="{{foodData.length == 0 && isLoaded}}">
+			<text>这里空空如也，快去收藏点美食吧</text>
+			<button bindtap="toIndex">去收藏</button>
+		</view>
+	</view>
+</view>
+
+<!-- 模态框 -->
+<view class="maskModal" catchtouchmove="preventTouchMove" wx:if="{{turnEnd}}"></view>
+<view class="turnEndTip" wx:if="{{turnEnd}}">
+	<view class="title">要不有空去试试这个吧~</view>
+	<image src="{{selectedData.image}}"></image>
+	<text>{{selectedData.name}}</text>
+	<view class="bar">
+		<view bindtap="toMap" class="toMap">周边相关店铺</view>
+		<view bindtap="gotIt" class="gotIt">好的</view>
+	</view>
+</view>

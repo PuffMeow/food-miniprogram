@@ -1,19 +1,21 @@
-<view class="container">
   <view class="header">
-    <input class="searchIpt" placeholder="想要找哪个收藏过的美味吗？"></input>
-    <button class="searchBtn"><image src="/images/search.png"></image></button>
+  	<input class="searchIpt" placeholder="想要找哪个收藏过的美食吗？" placeholder-class="placeholderStyle" bindinput="searchIpt" maxlength="20"></input>
+  	<button class="searchBtn" bindtap="searchBtn">
+  		<image src="/images/search.png"></image>
+  	</button>
   </view>
 
-  <view class="content" wx:if="{{favorData.length != 0}}">
-    <view class="food" wx:for="{{favorData}}" wx:key="*this">
-      <image src="{{item.img}}" style="animation-delay:{{index*1.2}}s;"></image>
-      <text>{{item.foodName}}</text>
-    </view>
-  </view>
+  <view class="container">
+  	<view class="content" wx:if="{{foodData.length != 0 && isSearchLoaded}}">
+  		<view class="food" wx:for="{{foodData}}" wx:key="index" data-_id="{{item._id}}" bindtap="toComment" data-idx="{{index}}">
+  			<image src="{{item.images[0]}}" mode="aspectFill" style="animation-delay:{{index*2.4}}s;"></image>
+  			<text>{{item.foodName}}</text>
+  		</view>
+  	</view>
 
-  <view class="tip" wx:if="{{favorData.length == 0}}">
-    <image src="/images/giveMe.png"></image>
-    <text>这里空空如也，快去收藏点美食吧</text>
-    <button>去收藏</button>
+  	<view class="tip" wx:if="{{foodData.length == 0  && isLoaded}}">
+  		<!-- <image src="/images/giveMe.png"></image> -->
+  		<text>这里空空如也，快去收藏点美食吧</text>
+  		<button bindtap="toIndex">去收藏</button>
+  	</view>
   </view>
-</view>

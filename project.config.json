@@ -4,17 +4,33 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"enhance": true
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"appid": "wxf4a6e0c2f41ec220",
 	"projectname": "miniProgramRace",
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -40,13 +56,6 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
 					"query": "",
@@ -67,10 +76,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "pages/comment/comment",
 					"pathName": "pages/comment/comment",
-					"query": "",
+					"query": "_id=38d78ca75ed52415002414374e9db820&index=4",
 					"scene": null
 				},
 				{
@@ -96,29 +105,57 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/myComment/myComment",
-					"pathName": "pages/myComment/myComment",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/myLike/myLike",
 					"pathName": "pages/myLike/myLike",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/vote/vote",
-					"pathName": "pages/vote/vote",
+					"id": 11,
+					"name": "pages/turntable/turntable",
+					"pathName": "pages/turntable/turntable",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/pubVote/pubVote",
-					"pathName": "pages/pubVote/pubVote",
+					"name": "pages/aboutSchool/aboutSchool",
+					"pathName": "pages/aboutSchool/aboutSchool",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/about/about",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/schoolFood/schoolFood",
+					"pathName": "pages/schoolFood/schoolFood",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/schoolShare/schoolShare",
+					"pathName": "pages/schoolShare/schoolShare",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/aboutDininghall/aboutDininghall",
+					"pathName": "pages/aboutDininghall/aboutDininghall",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/nearby/nearby",
+					"pathName": "pages/nearby/nearby",
 					"query": "",
 					"scene": null
 				}

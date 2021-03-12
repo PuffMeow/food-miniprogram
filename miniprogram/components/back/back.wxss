@@ -1,0 +1,94 @@
+.bg {
+  position: fixed;
+  width: 750rpx;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.goback {
+  position: absolute;
+  bottom: 0;
+  left: 20rpx;
+  width: 57rpx;
+  height: 57rpx;
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 50%;
+}
+
+
+@media screen and (min-height: 568px) {
+  .bg {
+    height: 57px;
+  }
+
+  .goback {
+    width: 67rpx;
+    height: 67rpx;
+  }
+}
+
+
+@media screen and (min-height: 667px) {
+  .bg {
+    height: 58px;
+  }
+
+  .goback {
+    width: 52rpx;
+    height: 52rpx;
+  }
+}
+
+@media screen and (min-height: 736px) {
+  .bg {
+    height: 58px;
+  }
+
+  .goback {
+    width: 52rpx;
+    height: 52rpx;
+  }
+}
+
+
+@media screen and (min-height: 760px) {
+  .bg {
+    height: 64px;
+  }
+
+  .goback {
+    width: 52rpx;
+    height: 52rpx;
+  }
+}
+
+
+@media screen and (min-height: 812px) {
+  .bg {
+    height: 80px;
+  }
+}
+
+@media screen and (min-height: 896px) {
+  .bg {
+    height: 80px;
+  }
+
+  .goback {
+    width: 54rpx;
+    height: 54rpx;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .bg {
+    height: 58px;
+  }
+
+  .goback {
+    width: 30rpx;
+    height: 30rpx;
+  }
+}

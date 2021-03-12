@@ -1,4 +1,5 @@
-// miniprogram/pages/out/out.js
+const app = getApp();
+let userid;
 Page({
 
   /**
@@ -9,21 +10,36 @@ Page({
   },
 
   //跳转到分享美食页
-  shareFood(e){
-    let userid = wx.getStorageSync('userid');
-    if(userid){
+  shareFood(e) {
+    if (userid) {
       wx.navigateTo({
         url: '../publish/publish',
       })
-    }else{
-      wx.switchTab({
-        url: '../my/my',
-      })
-      wx.showToast({
-        icon:'none',
-        title: '请先登录'
-      })
+    } else {
+      app.toLogin();
     }
+  },
+
+  toTurntable(e) {
+    if (userid) {
+      wx.navigateTo({
+        url: '../turntable/turntable',
+      })
+    } else {
+      app.toLogin();
+    }
+  },
+
+  toSchoolFood(e) {
+    wx.navigateTo({
+      url: '../schoolFood/schoolFood',
+    })
+  },
+
+  toNearby(e){
+    wx.navigateTo({
+      url: '../nearby/nearby',
+    })
   },
 
   /**
@@ -44,7 +60,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    userid = wx.getStorageSync('userid');
   },
 
   /**

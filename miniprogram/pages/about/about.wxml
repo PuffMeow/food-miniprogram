@@ -1,0 +1,27 @@
+<view class="container">
+	<view class="topTitle">关于我们</view>
+	<view class="box">
+		<view class="developer">
+			<view class="title">开发者:</view>
+			<view>
+				<image src="https://wx.qlogo.cn/mmopen/vi_32/381vGfiaHTR456Av8uH1q939M0T4GEXkhRZo83icdiaQawTk9Q3GlqGGkPH03Lc5Yiaux2OI6vF9yQtFhlXZCXSw9g/132"></image>
+				<view class="name">&You</view>
+			</view>
+		</view>
+
+		<view class="artDesigner">
+			<view class="title">美术:</view>
+			<view>
+				<image src="https://wx.qlogo.cn/mmopen/vi_32/giagASsqu7j5cTzNkL2lsCq0ey8olVyXSlhhibhKm304mOAArLjHl88HefEyp3tscNhWejBFJwv8PAAibtC8NJTFQ/132"></image>
+				<view class="name">问鱼</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="concact">
+		<image class="wechat" src="/images/wechat.png" bindtap="copyWechat"></image>
+		<image class="qq" src="/images/qq.png" bindtap="copyQQ"></image>
+	</view>
+	<view class="footer">by 重庆邮电大学 <view>软件工程学院</view>
+	</view>
+</view>

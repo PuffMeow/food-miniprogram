@@ -1,0 +1,116 @@
+<!--顶部导航栏-->
+<view class="swiperTab">
+	<view class="tabItem {{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">中心</view>
+	<view class="tabItem {{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">延生</view>
+	<view class="tabItem {{currentTab==2 ? 'on' : ''}}" data-current="2" catchtap="swichNav">千喜鹤</view>
+	<view class="tabItem {{currentTab==3 ? 'on' : ''}}" data-current="3" catchtap="swichNav">大西北</view>
+	<view class="tabItem {{currentTab==4 ? 'on' : ''}}" data-current="4" catchtap="swichNav">红高粱</view>
+	<view class="tabItem {{currentTab==5 ? 'on' : ''}}" data-current="5" catchtap="swichNav">兴业苑</view>
+</view>
+
+<!--内容-->
+<swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange" style="height:{{clientHeight?clientHeight+'px':'auto'}}" wx:if="{{isLoaded}}">
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="content">
+				<text class="name">{{zhongxin.name}}</text>
+				<block wx:for="{{zhongxin.images}}" wx:key="unique">
+					<image src="{{item}}" bindtap="previewImg" data-name="zhongxin" mode="aspectFill"></image>
+				</block>
+				<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{zhongxin.desc}}</text>
+				<view class="like">
+					<image src="{{zhongxin.isLike ? '/images/like.png' : '/images/unlike.png'}}" bindtap="likeBtn" data-id="{{zhongxin._id}}" data-name="zhongxin" animation="{{likeAnimation.zhongxin}}" mode="aspectFill"></image>
+					<text>为该食堂打Call</text>
+					<text>{{zhongxin.likeNum}}人已打Call</text>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="content">
+				<text class="name">{{yansheng.name}}</text>
+				<block wx:for="{{yansheng.images}}" wx:key="unique">
+					<image src="{{item}}" bindtap="previewImg" data-name="yansheng" mode="aspectFill"></image>
+				</block>
+				<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{yansheng.desc}}</text>
+				<view class="like">
+					<image src="{{yansheng.isLike ? '/images/like.png' : '/images/unlike.png'}}" bindtap="likeBtn" data-id="{{yansheng._id}}" data-name="yansheng" animation="{{likeAnimation.yansheng}}" mode="aspectFill"></image>
+					<text>为该食堂打Call</text>
+					<text>{{yansheng.likeNum}}人已打Call</text>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="content">
+				<text class="name">{{qianxihe.name}}</text>
+				<block wx:for="{{qianxihe.images}}" wx:key="unique">
+					<image src="{{item}}" bindtap="previewImg" data-name="qianxihe" mode="aspectFill"></image>
+				</block>
+				<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{qianxihe.desc}}</text>
+				<view class="like">
+					<image src="{{qianxihe.isLike ? '/images/like.png' : '/images/unlike.png'}}" bindtap="likeBtn" data-id="{{qianxihe._id}}" data-name="qianxihe" animation="{{likeAnimation.qianxihe}}"></image>
+					<text>为该食堂打Call</text>
+					<text>{{qianxihe.likeNum}}人已打Call</text>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="content">
+				<text class="name">{{daxibei.name}}</text>
+				<block wx:for="{{daxibei.images}}" wx:key="unique">
+					<image src="{{item}}" mode="aspectFill" bindtap="previewImg" data-name="daxibei"></image>
+				</block>
+				<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{daxibei.desc}}</text>
+				<view class="like">
+					<image src="{{daxibei.isLike ? '/images/like.png' : '/images/unlike.png'}}" bindtap="likeBtn" data-id="{{daxibei._id}}" data-name="daxibei" animation="{{likeAnimation.daxibei}}"></image>
+					<text>为该食堂打Call</text>
+					<text>{{daxibei.likeNum}}人已打Call</text>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="content">
+				<text class="name">{{honggaoliang.name}}</text>
+				<block wx:for="{{honggaoliang.images}}" wx:key="unique">
+					<image src="{{item}}" mode="aspectFill" bindtap="previewImg" data-name="honggaoliang"></image>
+				</block>
+				<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{honggaoliang.desc}}</text>
+				<view class="like">
+					<image src="{{honggaoliang.isLike ? '/images/like.png' : '/images/unlike.png'}}" bindtap="likeBtn" data-id="{{honggaoliang._id}}" data-name="honggaoliang" animation="{{likeAnimation.honggaoliang}}"></image>
+					<text>为该食堂打Call</text>
+					<text>{{honggaoliang.likeNum}}人已打Call</text>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+			<view class="content">
+				<text class="name">{{xingyeyuan.name}}</text>
+				<block wx:for="{{xingyeyuan.images}}" wx:key="unique">
+					<image src="{{item}}" mode="aspectFill" bindtap="previewImg" data-name="xingyeyuan"></image>
+				</block>
+				<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{xingyeyuan.desc}}</text>
+				<view class="like">
+					<image src="{{xingyeyuan.isLike ? '/images/like.png' : '/images/unlike.png'}}" bindtap="likeBtn" data-id="{{xingyeyuan._id}}" data-name="xingyeyuan" animation="{{likeAnimation.xingyeyuan}}"></image>
+					<text>为该食堂打Call</text>
+					<text>{{xingyeyuan.likeNum}}人已打Call</text>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+
+
+</swiper>

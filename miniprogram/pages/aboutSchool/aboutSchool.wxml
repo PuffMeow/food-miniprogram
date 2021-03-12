@@ -1,0 +1,8 @@
+	<goback />
+	<view class="container">
+		<block wx:for="{{images}}" wx:key="unique">
+			<view>{{item.name}}</view>
+			<image src="{{item.url}}" mode="aspectFill" data-idx="{{index}}" bindtap="previewImg"></image>
+		</block>
+		<view class="footer" wx:if="{{isLoaded}}">多谢观看~</view>
+	</view>

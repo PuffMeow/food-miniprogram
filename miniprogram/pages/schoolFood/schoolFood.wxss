@@ -1,0 +1,312 @@
+page {
+  color: #FFF;
+}
+
+.swiperTab {
+  display: flex;
+  flex-direction: row;
+  line-height: 80rpx;
+  background-color: #FFF;
+  color: #999;
+}
+
+.tabItem {
+  width: 16.7%;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+
+.swiper {
+  width: 750rpx;
+  margin-top: 30rpx;
+}
+
+.content {
+  width: 650rpx;
+  margin: 50rpx auto 0;
+}
+
+.content:first-child {
+  margin-top: 0;
+}
+
+.content:last-child {
+  margin-bottom: 200rpx;
+}
+
+.on {
+  color: #FF8D00;
+  border-bottom: 5rpx solid #FF8D00;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  height: 350rpx;
+  box-shadow: 5rpx 10rpx 15rpx #666;
+  border-radius: 30rpx;
+  text-shadow: 1rpx 1rpx 10rpx #666;
+}
+
+.box .foodName {
+  position: absolute;
+  left: 15rpx;
+  top: 12rpx;
+  z-index: 10;
+  font-style: italic;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.box .desc {
+  position: absolute;
+  font-size: 32rpx;
+  left: 15rpx;
+  top: 55rpx;
+  width: 230rpx;
+  z-index: 10;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.box .userInfo {
+  position: absolute;
+  bottom: 3rpx;
+  left: 15rpx;
+  z-index: 10;
+}
+
+.box .avatar {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  box-shadow: 2rpx 4rpx 6rpx #666;
+}
+
+.box .nickName {
+  display: inline-block;
+  font-size: 28rpx;
+  width: 230rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 650;
+  padding-left: 12rpx;
+  text-shadow: 1rpx 1rpx 10rpx #666;
+}
+
+.box .gender {
+  position: absolute;
+  bottom: 45rpx;
+  left: 55rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 30rpx;
+  opacity: .9;
+}
+
+
+.likeBtn {
+  position: absolute;
+  right: 20rpx;
+  bottom: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.likeBtn text {
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 650;
+}
+
+.likeOuter {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 70rpx;
+  height: 70rpx;
+  margin: 0 auto;
+  box-shadow: 2rpx 4rpx 6rpx #666;
+}
+
+.like {
+  margin-top: 5rpx;
+  margin-left: 6rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.pubBtn,
+.knowMore {
+  position: fixed;
+  bottom: 40rpx;
+  right: 50rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #FF8D00;
+  border-radius: 50%;
+  box-shadow: 5rpx 10rpx 15rpx #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pubBtn image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.knowMore image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.knowMore {
+  bottom: 150rpx;
+}
+
+
+
+.pubBox::before {
+  content: '';
+  height: 400rpx;
+  width: 2px;
+  position: absolute;
+  left: 80rpx;
+  top: -400rpx;
+  background-color: #666;
+}
+
+.pubBox::after {
+  content: '';
+  height: 400rpx;
+  width: 2px;
+  position: absolute;
+  right: 80rpx;
+  top: -400rpx;
+  background-color: #666;
+}
+
+.pubBox {
+  position: fixed;
+  left: 50rpx;
+  width: 650rpx;
+  height: 350rpx;
+  border-radius: 30rpx;
+  color: #FFF;
+  z-index: 100;
+  box-shadow: 10rpx 30rpx 30rpx #666;
+  background-color: #d5d5d5;
+}
+
+.uploadBg {
+  width: 100%;
+  height: 100%;
+  border-radius: 30rpx;
+  opacity: .6;
+}
+
+.pubBox .title,
+.foodName,
+.desc,
+.dininghall {
+  position: absolute;
+  left: 15rpx;
+  top: 25rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  text-shadow: 1rpx 1rpx 10rpx #999;
+}
+
+.pubBox .title {
+  font-size: 35rpx;
+}
+
+.pubBox .foodName {
+  top: 80rpx;
+}
+
+.pubBox .desc {
+  top: 130rpx;
+}
+
+.pubBox .dininghall {
+  top: 190rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.foodName input,
+.desc input {
+  display: inline-block;
+  vertical-align: bottom;
+  border-bottom: 1rpx solid #fff;
+  font-weight: 650;
+  font-size: 28rpx;
+}
+
+
+.iptCount {
+  font-size: 26rpx;
+  padding-left: 20rpx;
+}
+
+.pubBox .uploadImg {
+  position: absolute;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  bottom: 15rpx;
+  left: 15rpx;
+  background-color: #FFF;
+}
+
+.pubBox .uploadImg image {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 11rpx;
+}
+
+.pubBox .publish {
+  position: absolute;
+  width: 70rpx !important;
+  height: 70rpx !important;
+  border-radius: 50%;
+  bottom: 15rpx;
+  right: 15rpx;
+  background-color: #fff;
+  padding: 0;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-weight: 700;
+  color: #999;
+}
+
+
+#compress {
+  position: absolute;
+  left: -999rpx;
+  top: -999rpx;
+}
+
+.tip {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  color: #ccc;
+}

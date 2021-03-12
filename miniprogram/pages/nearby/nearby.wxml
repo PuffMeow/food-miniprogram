@@ -1,0 +1,32 @@
+<map id="myMap" markers="{{markers}}" style="width:100%;height:60vh;" longitude="{{longitude}}" latitude="{{latitude}}" scale='17' show-location show-compass bindmarkertap="bindmarkertap" bindcallouttap="bindmarkertap" polyline="{{polyline}}" show-scale enable-overlooking enable-3D>
+</map>
+<scroll-view scroll-y=" {{true}}" class="list" scroll-into-view="{{selectedCallout}}" scroll-with-animation>
+	<view class="listItem {{selectedId == index ? 'selected' :''}}" wx:for="{{markers}}" wx:key="unique" id="{{'item'+item.id}}" bindtap="selectItem" data-id="{{item.id}}" data-idx="{{index}}" data-distance="{{item.distance}}">
+		<view class="title">{{item.title}}
+			<text class="category">[{{item.category}}]</text>
+		</view>
+		<view class="address">{{item.address}}</view>
+		<view class="distance">
+			<image src="/images/distance.png"></image>
+			{{item.distance}}
+		</view>
+	</view>
+</scroll-view>
+
+
+<!-- 上拉详情 -->
+<view class="lineArea" style="bottom:-{{screenHeight}}px;" animation="{{upAnimation}}">
+	<view class="container">
+		<scroll-view class="content" scroll-y="{{true}}" scroll-with-animation>
+			<view class="title">
+				<image src="/images/route.png"></image> 路线
+				<image src="/images/close.png" bindtap="close"></image>
+				<text>距离({{itemDistance}})</text>
+				<view class="detailLoc" bindtap="toDetailLoc">详情</view>
+			</view>
+			<view class="line" wx:for="{{lines}}" wx:key="unique">
+				<image src="{{item.routeImgSrc}}"></image> {{item.instruction}}
+			</view>
+		</scroll-view>
+	</view>
+</view>

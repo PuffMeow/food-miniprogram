@@ -6,33 +6,33 @@ Page({
    */
   data: {
     likeData:[
-      // {
-      //   time:'2020-04-20 05:20:13',
-      //   img:'/images/loginBg.jpg',
-      //   title:'美味橘子',
-      //   desc:'很好吃很好吃反正好吃就对了',
-      //   like:222,
-      //   favor:333,
-      //   comment:123,
-      // },
-      // {
-      //   time:'2020-04-20 05:20:13',
-      //   img:'/images/avatar.jpg',
-      //   title:'萝卜',
-      //   desc:'很好吃很好吃反正好吃就对了',
-      //   like:222,
-      //   favor:333,
-      //   comment:123,
-      // },
-      // {
-      //   time:'2020-04-20 05:20:13',
-      //   img:'/images/pic.jpg',
-      //   title:'家常便饭',
-      //   desc:'很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了',
-      //   like:999999,
-      //   favor:1112321,
-      //   comment:1123,
-      // },
+      {
+        time:'2020-04-20 05:20:13',
+        img:'/images/move.png',
+        title:'美味橘子',
+        desc:'很好吃很好吃反正好吃就对了',
+        like:0,
+        favor:0,
+        comment:0,
+      },
+      {
+        time:'2020-04-20 05:20:13',
+        img:'/images/like.png',
+        title:'萝卜',
+        desc:'很好吃很好吃反正好吃就对了',
+        like:222,
+        favor:333,
+        comment:123,
+      },
+      {
+        time:'2020-04-20 05:20:13',
+        img:'/images/favor.png',
+        title:'家常便饭',
+        desc:'很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了很好吃很好吃反正好吃就对了',
+        like:999999,
+        favor:1112321,
+        comment:1123,
+      },
     ]
   },
 

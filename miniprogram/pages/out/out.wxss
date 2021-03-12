@@ -1,32 +1,37 @@
-.clickBar{
-  position: absolute;
-  bottom: 520rpx;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
+.container {
+  width: 545rpx;
+  margin: 45% auto;
 }
 
-.clickBar image{
-  width: 130rpx;
-  height: 130rpx;
+image {
+  width: 80rpx;
+  height: 80rpx;
   display: block;
-  margin:0 auto;
+  margin: 40rpx auto;
 }
 
-.icon{
+.voteList image {
+  margin-top: 25rpx;
+}
+
+.icon {
+  float: left;
   width: 220rpx;
   height: 220rpx;
-  margin: 0 35rpx;
+  margin: 0 0 50rpx 0;
   border: 3rpx solid #ccc;
   border-radius: 30rpx;
   background-color: #ffffff;
-  box-shadow: 6rpx 5rpx 15rpx;
+  box-shadow: 5rpx 10rpx 15rpx #666;
 }
 
-.desc{
+.nearby,
+.turntable {
+  margin-left: 95rpx;
+}
+
+.desc {
   margin-top: 20rpx;
   font-size: 30rpx;
   text-align: center;
 }
-

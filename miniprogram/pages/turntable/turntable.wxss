@@ -1,0 +1,323 @@
+.turntable,
+.bgShadow {
+  position: relative;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 600rpx;
+  height: 600rpx;
+  margin: 50rpx auto 0;
+}
+
+.bgShadow {
+  position: absolute;
+  box-shadow: 0 15rpx 12rpx rgba(0, 0, 0, .6);
+  top: 0;
+  left: 75rpx;
+}
+
+.line {
+  position: absolute;
+  left: 300rpx;
+  top: 0;
+  width: 2rpx;
+  height: 300rpx;
+  background-color: #FF8D00;
+  transform-origin: 50% 300rpx;
+}
+
+.pointer {
+  position: absolute;
+  width: 90rpx;
+  height: 90rpx;
+  background-color: #FF8D00;
+  left: 335rpx;
+  top: 290rpx;
+  border-radius: 50%;
+  box-shadow: 0 8rpx 12rpx rgba(0, 0, 0, .6);
+}
+
+.pointer::after {
+  position: absolute;
+  content: '';
+  left: 9rpx;
+  top: -52rpx;
+  border: 38rpx solid transparent;
+  border-bottom-color: #FF8D00;
+}
+
+.itemList {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.item {
+  width: 400rpx;
+  height: 60rpx;
+  margin: 0 auto;
+  text-align: center;
+  transform-origin: 50% 300rpx;
+}
+
+.item image {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #F7F7F7;
+  margin: 5rpx auto 0;
+}
+
+.itemText {
+  display: inline-block;
+  width: 70%;
+  margin: 30rpx auto 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 60rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+
+.btn {
+  width: 130rpx !important;
+  height: 130rpx !important;
+  position: absolute;
+  bottom: 200rpx;
+  left: 315rpx;
+  color: #F7F7F7;
+  padding: 0;
+  line-height: 130rpx;
+  border-radius: 50%;
+  font-size: 28rpx;
+  background-color: #FF8D00;
+  box-shadow: 0 6rpx 2rpx #666;
+}
+
+
+.choose,
+.reset {
+  position: absolute;
+  bottom: 210rpx;
+  width: 90rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  text-align: center;
+  color: #F7F7F7;
+  border-radius: 50%;
+  background-color: #FF8D00;
+  box-shadow: 0 6rpx 2rpx #666;
+}
+
+.choose {
+  right: 100rpx;
+}
+
+.reset {
+  left: 100rpx;
+}
+
+.choose:hover,
+.reset:hover,
+.btn:hover {
+  background-color: #FF8D00;
+}
+
+.activeChoose,
+.activeReset,
+.activeBtn {
+  background-color: #FF8D00;
+  transform: scale(.95);
+}
+
+.selectArea {
+  position: absolute;
+  width: 750rpx;
+  height: 90vh;
+  background-color: #F7F7F7;
+}
+
+.container {
+  width: 650rpx;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #F7F7F7;
+}
+
+.done,
+.cancel {
+  position: absolute;
+  width: 50%;
+  height: 90rpx;
+  bottom: 0;
+  font-size: 30rpx;
+  line-height: 90rpx;
+  color: #F7F7F7;
+  background-color: #FF8D00;
+  text-align: center;
+}
+
+.done {
+  z-index: 10;
+  left: 0;
+  border-right: 1rpx solid #fff;
+}
+
+.cancel {
+  right: 0;
+}
+
+.content {
+  width: 650rpx;
+  height: 93%;
+}
+
+.food {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+
+.food image {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 30rpx 32rpx 0 32rpx;
+  border-radius: 50%;
+  box-shadow: 3rpx 8rpx 12rpx #666;
+}
+
+.food text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 210rpx;
+  text-align: center;
+  font-size: 25rpx;
+  margin-top: 10rpx;
+}
+
+.food:last-child {
+  margin-bottom: 50rpx;
+}
+
+
+.food .userChoose {
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #FFF;
+  right: 0;
+  bottom: 43rpx;
+}
+
+.tip {
+  margin-top: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tip image {
+  width: 250rpx;
+  height: 200rpx;
+}
+
+.tip text {
+  font-size: 30rpx;
+  margin: 50rpx 0;
+  color: #ccc;
+}
+
+.tip button {
+  background-color: #FF8D00;
+  color: #FFF;
+}
+
+/* 弹出框 */
+.turnEndTip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 550rpx;
+  height: 300rpx;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 30rpx;
+  background-color: #fff;
+  z-index: 9500;
+}
+
+.turnEndTip .title {
+  font-size: 35rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.turnEndTip text {
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.turnEndTip image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.turnEndTip .bar {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70rpx;
+  border-top: 1rpx solid #ccc;
+}
+
+.bar .gotIt,
+.toMap {
+  width: 50%;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+/* 好的 */
+.gotIt {
+  border-bottom-right-radius: 30rpx;
+}
+
+/* 跳转去地图 */
+.toMap {
+  border-bottom-left-radius: 30rpx;
+  border-right: 1rpx solid #ccc;
+}
+
+/* 模态框 */
+.maskModal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #999;
+  opacity: 0.6;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #fff;
+}

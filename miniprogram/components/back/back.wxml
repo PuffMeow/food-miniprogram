@@ -1,0 +1,3 @@
+<view class="bg">
+	<image src="../../images/goback.png" class="goback" bindtap="goback"></image>
+</view>

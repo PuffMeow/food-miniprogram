@@ -1,32 +1,54 @@
-<movable-area class="area">
-	<movable-view wx:for="{{foodData}}" wx:key="index" class="content" direction="vertical" friction="{{0.1}}" data-idx="{{index}}" bindchange="cardMove" inertia="{{true}}" disabled="{{item.isMove}}" bindtouchend="touchEnd">
-		<image class="pic" mode="aspectFill" src="{{item.images[0]}}"></image>
-		<view class="clickBar">
-			<view>
-				<view class="comment" bindtap="toComment" data-_id="{{item._id}}">
-					<image src="/images/comment.png"></image>
+	<movable-area class="area">
+		<!-- 顶部公告栏 -->
+		<swiper class="header" vertical="true" autoplay circular="true">
+			<swiper-item class="hotItem" wx:for="{{hotData}}" wx:key="unique" catchtap="toHotComment" data-_id="{{item._id}}">
+				<image src="/images/fire.png"></image>
+				<text>热门：{{item.foodName}}</text>
+			</swiper-item>
+		</swiper>
+
+		<!-- 可滑动组件 -->
+		<movable-view wx:for="{{foodData}}" wx:key="_id" class="content" style="top: calc(36% + 25rpx - {{index*4}}rpx);" direction="vertical" friction="{{0.1}}" data-idx="{{index}}" bindchange="cardMove" inertia="{{true}}" disabled="{{item.isMove}}" catchtap="toComment" data-_id="{{item._id}}" data-idx="{{index}}" data-ismove="{{item.isMove}}">
+			<view class="imgCount">
+				<image src="/images/img.png"></image>
+				<text>{{item.images.length}}</text>
+			</view>
+			<image class="pic" mode="aspectFill" src="{{item.images[0]}}"></image>
+			<view class="clickBar">
+				<view>
+					<view class="comment" catchtap="toComment" data-_id="{{item._id}}" data-idx="{{index}}" data-ismove="{{item.isMove}}">
+						<image src="/images/comment.png"></image>
+					</view>
+					<view class="count">{{item.commentNum}}</view>
 				</view>
-				<view class="count">{{item.commentNum}}</view>
-			</view>
-			<view>
-				<view class="favor">
-					<image src="/images/favor.png"></image>
+				<view>
+					<view class="favor" catchtap="favorBtn" data-_id="{{item._id}}" data-idx="{{index}}" data-ismove="{{item.isMove}}">
+						<image src="{{item.isFavor ? '/images/favor.png':'/images/unfavor.png'}}" animation="{{favorAnimation[index]}}"></image>
+					</view>
+					<view class="count">{{item.favorNum}}</view>
 				</view>
-				<view class="count">{{item.favorNum}}</view>
-			</view>
-			<view>
-				<view class="like" bindtap="likeBtn" data-_id="{{item._id}}" data-idx="{{index}}">
-					<image src="{{item.isLike ? '/images/like.png':'/images/unlike.png'}}"></image>
+				<view>
+					<view class="like" catchtap="likeBtn" data-_id="{{item._id}}" data-idx="{{index}}" data-ismove="{{item.isMove}}" data-name="主页">
+						<image src="{{item.isLike ? '/images/like.png':'/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+					</view>
+					<view class="count">{{item.likeNum}}</view>
 				</view>
-				<view class="count">{{item.likeNum}}</view>
 			</view>
-		</view>
-		<view class="footer">
-			<view class="title">{{item.foodName}}</view>
-			<view class="address">{{item.addrName}}
-				<image src="/images/indexTag.png" />
+
+			<view class="footer">
+				<view class="title">{{item.foodName}}</view>
+				<view class="address">{{item.addrName}}
+					<image src="/images/indexTag.png" />
+				</view>
+				<view class="desc">{{item.desc}}</view>
 			</view>
-			<view class="desc">{{item.desc}}</view>
-		</view>
-	</movable-view>
-</movable-area>
+		</movable-view>
+	</movable-area>
+
+	<view class="noMore" wx:if="{{isLoaded}}">
+		<text>---继续滑动重新加载---</text>
+	</view>
+
+	<view class="tip" wx:if="{{isFirst && isLoaded}}" catchtap="upAndDown">
+		<image src="/images/upAndDown.png"></image>
+	</view>

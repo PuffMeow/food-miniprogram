@@ -1,12 +1,18 @@
 <view class="container">
-  <view class="clickBar">
-    <view class="shareFood icon" bindtap="shareFood">
-       <image src="/images/shareFood.png"></image>
-       <view class="desc">分享美食</view>
-    </view>
-    <view class="voteList icon">
-      <image src="/images/vote.png"></image>
-      <view class="desc">发起在线投票</view>
-    </view>
-  </view>
+	<view class="schoolFood icon" bindtap="toSchoolFood">
+		<image src="/images/schoolFood.png"></image>
+		<view class="desc">寻味重邮</view>
+	</view>
+	<view class="nearby icon" bindtap="toNearby">
+		<image src="/images/nearby.png"></image>
+		<view class="desc">逛逛周边</view>
+	</view>
+	<view class="shareFood icon" bindtap="shareFood">
+		<image src="/images/shareFood.png"></image>
+		<view class="desc">分享美食</view>
+	</view>
+	<view class="turntable icon" bindtap="toTurntable">
+		<image src="/images/vote.png"></image>
+		<view class="desc">美食帮</view>
+	</view>
 </view>

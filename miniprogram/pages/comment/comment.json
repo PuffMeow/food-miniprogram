@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "goback":"../../components/back/back"
+  },
   "navigationStyle": "custom"
 }

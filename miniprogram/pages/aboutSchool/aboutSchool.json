@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "goback":"../../components/back/back"
+  },
+  "navigationBarTitleText": "校园风光",
+  "navigationStyle":"custom"
+}
