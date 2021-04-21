@@ -1,6 +1,6 @@
-const {
+import {
   getSchoolImgs
-} = require('../../db/db');
+} from '../../db/db'
 Page({
 
   /**

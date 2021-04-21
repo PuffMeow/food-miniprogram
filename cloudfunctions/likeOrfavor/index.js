@@ -111,9 +111,8 @@ exports.main = async (event, context) => {
     const res = await db.collection('AboutDininghall').doc(event.id).field({
       likeArr: true,
       likeNum: true
-    }).get();
-    return res;
-
+    }).get()
+    return res
   }
 
 }

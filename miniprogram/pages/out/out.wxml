@@ -7,10 +7,10 @@
 		<image src="/images/nearby.png"></image>
 		<view class="desc">逛逛周边</view>
 	</view>
-	<view class="shareFood icon" bindtap="shareFood">
+	<!-- <view class="shareFood icon" bindtap="shareFood">
 		<image src="/images/shareFood.png"></image>
 		<view class="desc">分享美食</view>
-	</view>
+	</view> -->
 	<view class="turntable icon" bindtap="toTurntable">
 		<image src="/images/vote.png"></image>
 		<view class="desc">美食帮</view>

@@ -72,22 +72,14 @@ page {
 
 .box .userInfo {
   position: absolute;
-  bottom: 3rpx;
-  left: 15rpx;
+  bottom: 10rpx;
+  left: 12rpx;
   z-index: 10;
 }
 
-.box .avatar {
-  display: block;
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  box-shadow: 2rpx 4rpx 6rpx #666;
-}
-
-.box .nickName {
+.box .price {
   display: inline-block;
-  font-size: 28rpx;
+  font-size: 34rpx;
   width: 230rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -95,20 +87,9 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 650;
-  padding-left: 12rpx;
+  padding-left: 8rpx;
   text-shadow: 1rpx 1rpx 10rpx #666;
 }
-
-.box .gender {
-  position: absolute;
-  bottom: 45rpx;
-  left: 55rpx;
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-  background-color: #fff;
-}
-
 
 .bgImage {
   width: 100%;
@@ -150,10 +131,9 @@ page {
   height: 60rpx;
 }
 
-.pubBtn,
 .knowMore {
   position: fixed;
-  bottom: 40rpx;
+  bottom: 70rpx;
   right: 50rpx;
   width: 80rpx;
   height: 80rpx;
@@ -165,21 +145,10 @@ page {
   align-items: center;
 }
 
-.pubBtn image {
-  width: 40rpx;
-  height: 40rpx;
-}
-
 .knowMore image {
   width: 50rpx;
   height: 50rpx;
 }
-
-.knowMore {
-  bottom: 150rpx;
-}
-
-
 
 .pubBox::before {
   content: '';

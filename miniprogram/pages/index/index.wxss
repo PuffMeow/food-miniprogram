@@ -16,7 +16,7 @@
   z-index: 999;
 }
 
-.header .hotItem{
+.header .hotItem {
   display: flex;
   height: 80rpx;
   line-height: 80rpx;
@@ -24,14 +24,14 @@
   color: #FE772F;
 }
 
-.header .hotItem image{
+.header .hotItem image {
   width: 40rpx;
   height: 40rpx;
   margin-top: 20rpx;
   vertical-align: middle;
 }
 
-.header .hotItem text{
+.header .hotItem text {
   width: 600rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,8 +92,7 @@
 }
 
 .like,
-.favor,
-.comment {
+.favor {
   background-color: #fff;
   border-radius: 50%;
   margin: 0 10rpx;

@@ -7,26 +7,13 @@
 		</view>
 		<view class="userInfo" wx:if="{{showMessage}}">
 			<view class="nickName">{{nickName}}</view>
-			<image class="gender" src="{{gender == 0 ? '/images/rice.png' : gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
+			<image class="gender"
+				src="{{gender == 0 ? '/images/rice.png' : gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
 		</view>
 		<button class="loginBtn" size="mini" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击登录</button>
 
-		<view class="statusBar" hidden="{{!showMessage}}">
-			<view class="shareCount" bindtap="toMyShare">
-				<view>{{shareCount}}</view>
-				<view>主页分享</view>
-			</view>
-			<view class="schoolShareCount" bindtap="toSchoolShare">
-				<view>{{schoolFoodCount}}</view>
-				<view>校内分享</view>
-			</view>
-			<view class="favorCount" bindtap="toMyFavor">
-				<view>{{favorCount}}</view>
-				<view>我的收藏</view>
-			</view>
-		</view>
-
 		<view class="bottom">
+			<view class="favorite-food" bindtap="toMyFavor">美食收藏</view>
 			<view class="aboutSchool" bindtap="toAboutSchool">重邮风光</view>
 			<view class="about" bindtap="toAbout">关于我们</view>
 			<view class="feedback"><button open-type="feedback">问题反馈</button></view>

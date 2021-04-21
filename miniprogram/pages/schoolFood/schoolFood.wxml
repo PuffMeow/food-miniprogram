@@ -9,7 +9,8 @@
 </view>
 
 <!--内容-->
-<swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange" style="height:{{clientHeight?clientHeight+'px':'auto'}}">
+<swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange"
+	style="height:{{clientHeight?clientHeight+'px':'auto'}}">
 	<swiper-item>
 		<scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
 			<view class="tip" wx:if="{{zhongxin.length == 0 && isLoaded}}">---暂时无人分享---</view>
@@ -18,14 +19,15 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<image class="avatar" src="{{item.avatar}}"></image>
-						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-						<view class="nickName">{{item.nickName}}</view>
+						<view class="price">￥100</view>
 					</view>
-					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="zhongxin" data-idx="{{index}}" mode="aspectFill"></image>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="zhongxin"
+						data-idx="{{index}}" mode="aspectFill"></image>
 					<view class="likeBtn">
-						<view class="likeOuter" catchtap="likeBtn" data-dininghall='zhongxin' data-_id="{{item._id}}" data-idx="{{index}}">
-							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='zhongxin' data-_id="{{item._id}}"
+							data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}"
+								animation="{{likeAnimation[index]}}"></image>
 						</view>
 						<text>{{item.likeNum}}</text>
 					</view>
@@ -42,14 +44,15 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<image class="avatar" src="{{item.avatar}}"></image>
-						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-						<view class="nickName">{{item.nickName}}</view>
+						<view class="price">{{item.price}}</view>
 					</view>
-					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="yansheng" data-idx="{{index}}" mode="aspectFill"></image>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="yansheng"
+						data-idx="{{index}}" mode="aspectFill"></image>
 					<view class="likeBtn">
-						<view class="likeOuter" catchtap="likeBtn" data-dininghall='yansheng' data-_id="{{item._id}}" data-idx="{{index}}">
-							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='yansheng' data-_id="{{item._id}}"
+							data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}"
+								animation="{{likeAnimation[index]}}"></image>
 						</view>
 						<text>{{item.likeNum}}</text>
 					</view>
@@ -66,14 +69,15 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<image class="avatar" src="{{item.avatar}}"></image>
-						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-						<view class="nickName">{{item.nickName}}</view>
+						<view class="price">{{item.price}}</view>
 					</view>
-					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="qianxihe" data-idx="{{index}}" mode="aspectFill"></image>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="qianxihe"
+						data-idx="{{index}}" mode="aspectFill"></image>
 					<view class="likeBtn">
-						<view class="likeOuter" catchtap="likeBtn" data-dininghall='qianxihe' data-_id="{{item._id}}" data-idx="{{index}}">
-							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='qianxihe' data-_id="{{item._id}}"
+							data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}"
+								animation="{{likeAnimation[index]}}"></image>
 						</view>
 						<text>{{item.likeNum}}</text>
 					</view>
@@ -90,14 +94,15 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<image class="avatar" src="{{item.avatar}}"></image>
-						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-						<view class="nickName">{{item.nickName}}</view>
+						<view class="price">{{item.price}}</view>
 					</view>
-					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="daxibei" data-idx="{{index}}"  mode="aspectFill"></image>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="daxibei" data-idx="{{index}}"
+						mode="aspectFill"></image>
 					<view class="likeBtn">
-						<view class="likeOuter" catchtap="likeBtn" data-dininghall='daxibei' data-_id="{{item._id}}" data-idx="{{index}}">
-							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='daxibei' data-_id="{{item._id}}"
+							data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}"
+								animation="{{likeAnimation[index]}}"></image>
 						</view>
 						<text>{{item.likeNum}}</text>
 					</view>
@@ -114,14 +119,15 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<image class="avatar" src="{{item.avatar}}"></image>
-						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-						<view class="nickName">{{item.nickName}}</view>
+						<view class="price">{{item.price}}</view>
 					</view>
-					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="honggaoliang" data-idx="{{index}}"  mode="aspectFill"></image>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="honggaoliang"
+						data-idx="{{index}}" mode="aspectFill"></image>
 					<view class="likeBtn">
-						<view class="likeOuter" catchtap="likeBtn" data-dininghall='honggaoliang' data-_id="{{item._id}}" data-idx="{{index}}">
-							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='honggaoliang' data-_id="{{item._id}}"
+							data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}"
+								animation="{{likeAnimation[index]}}"></image>
 						</view>
 						<text>{{item.likeNum}}</text>
 					</view>
@@ -138,14 +144,15 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<image class="avatar" src="{{item.avatar}}"></image>
-						<image class="gender" src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-						<view class="nickName">{{item.nickName}}</view>
+						<view class="price">{{item.price}}</view>
 					</view>
-					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="xingyeyuan" data-idx="{{index}}"  mode="aspectFill"></image>
+					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="xingyeyuan"
+						data-idx="{{index}}" mode="aspectFill"></image>
 					<view class="likeBtn">
-						<view class="likeOuter" catchtap="likeBtn" data-dininghall='xingyeyuan' data-_id="{{item._id}}" data-idx="{{index}}">
-							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}" animation="{{likeAnimation[index]}}"></image>
+						<view class="likeOuter" catchtap="likeBtn" data-dininghall='xingyeyuan' data-_id="{{item._id}}"
+							data-idx="{{index}}">
+							<image class="like" src="{{item.isLike ? '/images/like.png' : '/images/unlike.png'}}"
+								animation="{{likeAnimation[index]}}"></image>
 						</view>
 						<text>{{item.likeNum}}</text>
 					</view>
@@ -177,9 +184,6 @@
 	<button class="publish" catchtap="clickedPublish">分享</button>
 </view>
 
-<view class="pubBtn" catchtap="pubBtn">
-	<image src="../../images/add2.png"></image>
-</view>
 <view class="knowMore" catchtap="knowMore">
 	<image src="../../images/knowMore.png"></image>
 </view>

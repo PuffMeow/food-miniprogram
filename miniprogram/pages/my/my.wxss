@@ -31,7 +31,7 @@
 .header {
   margin-top: 170rpx;
   background: linear-gradient(130deg, #F7B52C, #F59C70, #EF718F);
-  height: 380rpx;
+  height: 350rpx;
   border-radius: 50rpx;
   position: relative;
   box-shadow: 5rpx 10rpx 15rpx #666;
@@ -82,41 +82,7 @@
   border: 1rpx solid #333;
 }
 
-
-.statusBar {
-  position: absolute;
-  bottom: 0;
-  left: 10%;
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  margin: 10rpx 0;
-}
-
-.shareCount,
-.favorCount {
-  width: 26%;
-}
-
-.schoolShareCount {
-  width: 48%;
-}
-
-.schoolShareCount view:nth-child(2),
-.favorCount view:nth-child(2),
-.shareCount view:nth-child(2) {
-  font-size: 25rpx;
-}
-
-.shareCount view:nth-child(1),
-.schoolShareCount view:nth-child(1),
-.favorCount view:nth-child(1) {
-  font-size: 40rpx;
-  margin: 0 40rpx;
-}
-
-
+.favorite-food,
 .feedback,
 .aboutSchool,
 .about {
@@ -145,7 +111,7 @@
   }
 }
 
-
+.favorite-food::before,
 .aboutSchool::before,
 .about::before,
 .feedback::before {
@@ -158,29 +124,21 @@
   transform: scale(0.5);
 }
 
-.myLike {
-  left: 60rpx;
-  background: linear-gradient(to right bottom, #FEE6C9, #FAB07A);
+.favorite-food {
+  left: 80rpx;
+  background: linear-gradient(to right bottom, #f6d365, #fda085);
 }
-
-
-
 
 .aboutSchool {
-  left: 95rpx;
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-
+  left: 220rpx;
+  background: linear-gradient(to right bottom, #F5A45B, #F49378);
 }
-
-
 
 .about {
-  left: 290rpx;
-  background: linear-gradient(to right bottom, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
+  left: 360rpx;
+  background: linear-gradient(to right bottom, #F6A851 0%, #FFA99F 55%, #FF719A 100%);
 
 }
-
-
 
 .feedback button::after {
   border: none;
@@ -201,6 +159,6 @@
 }
 
 .feedback {
-  left: 480rpx;
+  left: 500rpx;
   background: linear-gradient(to left top, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
 }

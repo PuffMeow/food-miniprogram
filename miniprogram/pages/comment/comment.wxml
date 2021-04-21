@@ -49,9 +49,6 @@
 			</view>
 
 			<view class="clickBar">
-				<view class="comment" bindtap="comment">
-					<image src="/images/comment.png" /> <text>{{pageData.commentNum}}</text>
-				</view>
 				<view class="favor" bindtap="favorBtn">
 					<image src="{{pageData.isFavor ? '/images/favor.png' : '/images/unfavor.png'}}" animation="{{favorAnimation}}"></image> <text>{{pageData.favorNum}}</text>
 				</view>

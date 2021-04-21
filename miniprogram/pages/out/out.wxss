@@ -25,9 +25,12 @@ image {
   box-shadow: 5rpx 10rpx 15rpx #666;
 }
 
-.nearby,
-.turntable {
+.nearby {
   margin-left: 95rpx;
+}
+
+.turntable {
+  margin-left: 150rpx;
 }
 
 .desc {

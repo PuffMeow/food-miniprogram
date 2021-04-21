@@ -6,12 +6,10 @@
     "pages/out/out",
     "pages/my/my",
     "pages/favorite/favorite",
-    "pages/myShare/myShare",
     "pages/turntable/turntable",
     "pages/aboutSchool/aboutSchool",
     "pages/about/about",
     "pages/schoolFood/schoolFood",
-    "pages/schoolShare/schoolShare",
     "pages/aboutDininghall/aboutDininghall",
     "pages/nearby/nearby"
   ],

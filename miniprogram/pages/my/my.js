@@ -1,6 +1,6 @@
-const {
+import {
   getOpenid
-} = require('../../db/db')
+} from '../../db/db'
 
 let openid;
 
@@ -17,7 +17,7 @@ Page({
     gender: 0,
     shareCount: 0,
     favorCount: 0,
-    schoolFoodCount:0,
+    schoolFoodCount: 0,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -42,7 +42,7 @@ Page({
    * 点击获取用户信息
    */
   async getUserInfo(e) {
-    let res = await getOpenid();
+    const res = await getOpenid();
     openid = res.result.openid;
     this.data.openid = openid;
     wx.setStorageSync('openid', openid);
@@ -117,13 +117,6 @@ Page({
     return userid;
   },
 
-
-  toMyShare() {
-    wx.navigateTo({
-      url: '../myShare/myShare'
-    })
-  },
-
   toMyFavor() {
     wx.navigateTo({
       url: '../favorite/favorite'
@@ -177,12 +170,12 @@ Page({
       })
       .count();
 
-    Promise.all([p1, p2,p3]).then(res => {
+    Promise.all([p1, p2, p3]).then(res => {
       console.log(res);
       this.setData({
         shareCount: res[0].total,
         favorCount: res[1].total,
-        schoolFoodCount:res[2].total
+        schoolFoodCount: res[2].total
       })
     }).catch(err => {
       console.log(err);

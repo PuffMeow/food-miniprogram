@@ -1,13 +1,12 @@
-const app = getApp();
-const util = require('../../util/util');
-let {
+import util from '../../util/util'
+import {
   msgCheck,
   getSchoolFood,
-} = require('../../db/db');
-
-let {
   getOpenid
-} = require('../../db/db');
+} from '../../db/db'
+
+const app = getApp()
+
 let userid;
 let openid;
 
@@ -270,124 +269,6 @@ Page({
     };
     compress(tempFilePaths);
   },
-
-  /**
-   * 发表
-   */
-  publish() {
-    util.debounce(this.clickedPublish(), 500);
-  },
-  async clickedPublish(e) {
-    wx.showLoading({
-      title: '正在分享...',
-      mask: true,
-    })
-    if (this.data.foodName === '') {
-      wx.showToast({
-        icon: 'none',
-        title: '菜名不能为空',
-      })
-      return;
-    } else {
-      let foodNameCheck = await msgCheck(this.data.foodName, '菜名中含有敏感词');
-      console.log(foodNameCheck);
-      if (foodNameCheck === false) {
-        return;
-      }
-    }
-    if (this.data.desc === '') {
-      wx.showToast({
-        icon: 'none',
-        title: '简评不能为空',
-      })
-      return;
-    } else {
-      let descCheck = await msgCheck(this.data.desc, '简评中含有敏感词');
-      if (descCheck === false) {
-        return;
-      }
-    }
-    if (this.data.selectedDininghall === '') {
-      wx.showToast({
-        icon: 'none',
-        title: '请先选择食堂',
-      })
-      return;
-    }
-    if (this.data.images.length === 0) {
-      wx.showToast({
-        icon: 'none',
-        title: '请先上传图片',
-      })
-      return;
-    }
-
-    wx.cloud.uploadFile({
-        cloudPath: 'schoolFoodImgs/' + new Date().getTime() + '.png',
-        filePath: this.data.images[0]
-      })
-      .then(res => {
-        this.data.cloudImg.push(res.fileID);
-        wx.cloud.callFunction({
-            name: 'addShareFood',
-            data: {
-              option: 'schoolFood',
-              openid: wx.getStorageSync('openid'),
-              avatar: wx.getStorageSync('avatar'),
-              nickName: wx.getStorageSync('nickName'),
-              gender: wx.getStorageSync('gender'),
-              foodName: this.data.foodName,
-              desc: this.data.desc,
-              dininghall: this.data.selectedDininghall,
-              images: this.data.cloudImg,
-              likeNum: 0,
-              likeArr: [],
-            }
-          })
-          .then(res => {
-            console.log(res);
-            let animation = wx.createAnimation({
-              duration: 1500,
-              timingFunction: 'ease-in-out',
-            })
-            animation.translateY(-this.data.clientHeight * 1.25).step();
-            wx.hideLoading();
-            wx.showToast({
-              title: '分享成功',
-            })
-            this.data.isPub = false;
-            this.data.cloudImg = [];
-            this.data.selectedDininghall = '';
-            this.setData({
-              animation: animation.export(),
-              // isPub: false,
-              foodName: '',
-              desc: '',
-              images: [],
-              index: 0,
-              // selectedDininghall: '',
-              descCount: 0,
-              foodNameCount: 0
-            })
-            this.onLoad();
-          })
-          .catch(err => {
-            console.log(err);
-            wx.showToast({
-              icon: 'none',
-              title: '请求超时,请重试',
-            })
-          })
-      })
-      .catch(err => {
-        console.log(err);
-        wx.showToast({
-          icon: 'none',
-          title: '请求超时，请重试'
-        })
-      })
-  },
-
 
   likeBtn(e) {
     let dininghall = e.currentTarget.dataset.dininghall;
