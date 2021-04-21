@@ -1,165 +1,172 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"appid": "wxf4a6e0c2f41ec220",
-	"projectname": "miniProgramRace",
-	"libVersion": "2.11.1",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"compileType": "miniprogram",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/out/out",
-					"pathName": "pages/out/out",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/my/my",
-					"pathName": "pages/my/my",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "pages/comment/comment",
-					"pathName": "pages/comment/comment",
-					"query": "_id=38d78ca75ed52415002414374e9db820&index=4",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/publish/publish",
-					"pathName": "pages/publish/publish",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/favorite/favorite",
-					"pathName": "pages/favorite/favorite",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "pages/myShare/myShare",
-					"pathName": "pages/myShare/myShare",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/myLike/myLike",
-					"pathName": "pages/myLike/myLike",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 11,
-					"name": "pages/turntable/turntable",
-					"pathName": "pages/turntable/turntable",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/aboutSchool/aboutSchool",
-					"pathName": "pages/aboutSchool/aboutSchool",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/about/about",
-					"pathName": "pages/about/about",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/schoolFood/schoolFood",
-					"pathName": "pages/schoolFood/schoolFood",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/schoolShare/schoolShare",
-					"pathName": "pages/schoolShare/schoolShare",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/aboutDininghall/aboutDininghall",
-					"pathName": "pages/aboutDininghall/aboutDininghall",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/nearby/nearby",
-					"pathName": "pages/nearby/nearby",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "useApiHostProcess": false
+  },
+  "appid": "wxf4a6e0c2f41ec220",
+  "projectname": "miniProgramRace",
+  "libVersion": "2.11.1",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "compileType": "miniprogram",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/out/out",
+          "pathName": "pages/out/out",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/my/my",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "pages/comment/comment",
+          "pathName": "pages/comment/comment",
+          "query": "_id=38d78ca75ed52415002414374e9db820&index=4",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/favorite/favorite",
+          "pathName": "pages/favorite/favorite",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "pages/myShare/myShare",
+          "pathName": "pages/myShare/myShare",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/myLike/myLike",
+          "pathName": "pages/myLike/myLike",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 11,
+          "name": "pages/turntable/turntable",
+          "pathName": "pages/turntable/turntable",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/aboutSchool/aboutSchool",
+          "pathName": "pages/aboutSchool/aboutSchool",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/about/about",
+          "pathName": "pages/about/about",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/schoolFood/schoolFood",
+          "pathName": "pages/schoolFood/schoolFood",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/schoolShare/schoolShare",
+          "pathName": "pages/schoolShare/schoolShare",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/aboutDininghall/aboutDininghall",
+          "pathName": "pages/aboutDininghall/aboutDininghall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/nearby/nearby",
+          "pathName": "pages/nearby/nearby",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
