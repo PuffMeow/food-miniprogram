@@ -2,8 +2,6 @@ import {
   getOpenid
 } from '../../db/db'
 
-let openid;
-
 Page({
 
   /**
@@ -42,71 +40,70 @@ Page({
    * 点击获取用户信息
    */
   async getUserInfo(e) {
-    const res = await getOpenid();
-    openid = res.result.openid;
-    this.data.openid = openid;
-    wx.setStorageSync('openid', openid);
-    let _this = this;
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          console.log(e);
-          let u = e.detail.userInfo;
-          _this.setData({
-            avatar: u.avatarUrl,
-            nickName: u.nickName,
-            gender: u.gender,
-            showMessage: true,
-          })
-          wx.setStorageSync("nickName", u.nickName);
-          wx.setStorageSync("avatar", u.avatarUrl);
-          wx.setStorageSync("gender", u.gender);
-          let db = wx.cloud.database();
-          let _ = db.command;
-          db.collection('UserInfo').where({
-              openid: _this.data.openid
-            })
-            .get()
-            .then(res => {
-              console.log('查询用户:', res);
-              if (res.data && res.data.length > 0) {
-                console.log('用户已存在');
-                wx.setStorageSync('userid', res.data[0].userid);
-              } else {
-                let avatar = u.avatarUrl;
-                let nickName = u.nickName;
-                let gender = u.gender;
-                let userid = wx.getStorageSync('userid');
-                if (!userid) {
-                  userid = _this.getUserid();
-                }
-                wx.cloud.callFunction({
-                    name: 'addUser',
-                    data: {
-                      userid: userid,
-                      nickName: nickName,
-                      avatar: avatar,
-                      gender: gender,
-                    }
-                  })
-                  .then(res => {
-                    console.log('用户数据存进数据库成功', res);
-                  })
-                  .catch(err => {
-                    console.log('操作失败', err);
-                  })
-              }
-            })
-            .catch(err => {
-              console.log(err);
-            })
+    wx.getUserProfile({
+      desc: "将用于更好的展示体验",
+      success: async res => {
+        const {
+          nickName,
+          avatarUrl,
+          gender
+        } = res.userInfo
 
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: '请先登录再使用',
+        wx.setStorageSync("nickName", nickName)
+        wx.setStorageSync("avatar", avatarUrl)
+        wx.setStorageSync("gender", gender)
+
+        this.setData({
+          avatar: avatarUrl,
+          nickName: nickName,
+          gender: gender,
+          showMessage: true,
+        })
+
+        const db = wx.cloud.database();
+        const _ = db.command;
+
+        const openidRes = await getOpenid()
+        const openid = openidRes.result.openid
+        this.data.openid = openid
+        wx.setStorageSync('openid', openid)
+
+        db.collection('UserInfo').where({
+            openid: openid
           })
-        }
+          .get()
+          .then(res => {
+            console.log('查询用户:', res);
+            if (res.data && res.data.length) {
+              console.log('用户已存在');
+              wx.setStorageSync('userid', res.data[0].userid);
+            } else {
+              const userid = wx.getStorageSync('userid') || this.getUserid()
+              wx.cloud.callFunction({
+                name: 'addUser',
+                data: {
+                  userid,
+                  nickName,
+                  avatar: avatarUrl,
+                  gender
+                }
+              }).then(res => {
+                console.log('用户数据存进数据库成功', res);
+              }).catch(err => {
+                console.log('操作失败', err);
+              })
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      },
+      fail: err => {
+        console.log(err)
+        wx.showToast({
+          icon: 'none',
+          title: '请先登录再使用',
+        })
       }
     })
   },
@@ -151,41 +148,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    let openid = wx.getStorageSync('openid')
-    const db = wx.cloud.database();
-
-    let p1 = db.collection('Published').where({
-        openid: openid
-      })
-      .count();
-
-    let p2 = db.collection('Published').where({
-        favorArr: openid
-      })
-      .count();
-
-    let p3 = db.collection('SchoolFood').where({
-        openid: openid
-      })
-      .count();
-
-    Promise.all([p1, p2, p3]).then(res => {
-      console.log(res);
-      this.setData({
-        shareCount: res[0].total,
-        favorCount: res[1].total,
-        schoolFoodCount: res[2].total
-      })
-    }).catch(err => {
-      console.log(err);
-      wx.showToast({
-        icon: 'none',
-        title: '出了点错...',
-      })
-    })
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

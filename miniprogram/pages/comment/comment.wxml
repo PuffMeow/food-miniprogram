@@ -1,20 +1,8 @@
 <view class="container">
 	<goback />
-	<view class="dmArea">
-		<view class='dmList' wx:for="{{ dmData }}" wx:key="_id" style="top:{{ item.top }}%; animation: dmMove 8s linear {{ index*2 }}s" data-index="{{index}}" bindanimationend="animationend">
-			<view class='dmItem'>
-				<view class='avatarBox'>
-					<image src='{{item.avatar}}' class='dmAvatar' mode='aspectFit'></image>
-					<image src="{{item.gender == 0 ? '/images/rice.png' : item.gender == 1 ? '/images/boy.png' : '/images/girl.png'}}" class='dmGender' mode='aspectFit'></image>
-				</view>
-				<text class='dmContent'>{{ item.content }}</text>
-			</view>
-		</view>
-	</view>
-
-
 	<view class='swiper-box'>
-		<swiper indicator-dots="{{indicatorDots}}" autoplay interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange" circular="{{circular}}">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay interval="{{interval}}" duration="{{duration}}"
+			bindchange="swiperChange" circular="{{circular}}">
 			<block wx:for="{{pageData.images}}" wx:key="index">
 				<swiper-item>
 					<image src="{{item}}" mode="aspectFill" bindtap="preview" data-idx="{{index}}" />
@@ -30,13 +18,12 @@
 
 	<view class="userInfo">
 		<view class="user">
-			<image class="avatar" src="{{avatar}}"></image>
+			<image class="avatar"
+				src="https://736b-skywechat-1301653036.tcb.qcloud.la/%E5%AF%BB%E5%91%B3%E9%87%8D%E9%82%AE.png?sign=a4fa297171c6c9818aebf421887ee025&t=1619094511">
+			</image>
 			<view>
 				<view class="tInfo">
-					<view class="nickName">{{nickName}}</view>
-					<view class="gender">
-						<image src="{{gender == 0 ? '/images/rice.png' : gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
-					</view>
+					<view class="nickName">寻味重邮</view>
 				</view>
 				<view class="date">{{pageData.pubTime}}</view>
 			</view>
@@ -50,16 +37,19 @@
 
 			<view class="clickBar">
 				<view class="favor" bindtap="favorBtn">
-					<image src="{{pageData.isFavor ? '/images/favor.png' : '/images/unfavor.png'}}" animation="{{favorAnimation}}"></image> <text>{{pageData.favorNum}}</text>
+					<image src="{{pageData.isFavor ? '/images/favor.png' : '/images/unfavor.png'}}"
+						animation="{{favorAnimation}}"></image> <text>{{pageData.favorNum}}</text>
 				</view>
 				<view class="like" bindtap="likeBtn">
-					<image src="{{pageData.isLike ? '/images/like.png':'/images/unlike.png'}}" animation="{{likeAnimation}}"></image> <text>{{pageData.likeNum}}</text>
+					<image src="{{pageData.isLike ? '/images/like.png':'/images/unlike.png'}}" animation="{{likeAnimation}}">
+					</image> <text>{{pageData.likeNum}}</text>
 				</view>
 			</view>
 
 			<view class="inputBox">
 				<view class="textInput" hidden="{{!isInput}}">
-					<textarea value="{{inputContent}}" focus="{{isInput}}" bindinput="dmInput" bindblur="inputBlur" bindconfirm="endInput" maxlength="30" placeholder="是不是馋了？说点什么吧~">
+					<textarea value="{{inputContent}}" focus="{{isInput}}" bindinput="dmInput" bindblur="inputBlur"
+						bindconfirm="endInput" maxlength="30" placeholder="是不是馋了？说点什么吧~">
           </textarea>
 					<text class="count">{{dmCount}}/30字</text>
 				</view>

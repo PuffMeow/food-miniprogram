@@ -31,7 +31,7 @@
 .header {
   margin-top: 170rpx;
   background: linear-gradient(130deg, #F7B52C, #F59C70, #EF718F);
-  height: 350rpx;
+  height: 340rpx;
   border-radius: 50rpx;
   position: relative;
   box-shadow: 5rpx 10rpx 15rpx #666;

@@ -19,7 +19,7 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<view class="price">￥100</view>
+						<view class="price">￥{{item.price}}</view>
 					</view>
 					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="zhongxin"
 						data-idx="{{index}}" mode="aspectFill"></image>
@@ -44,7 +44,7 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<view class="price">{{item.price}}</view>
+						<view class="price">￥{{item.price}}</view>
 					</view>
 					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="yansheng"
 						data-idx="{{index}}" mode="aspectFill"></image>
@@ -69,7 +69,7 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<view class="price">{{item.price}}</view>
+						<view class="price">￥{{item.price}}</view>
 					</view>
 					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="qianxihe"
 						data-idx="{{index}}" mode="aspectFill"></image>
@@ -94,7 +94,7 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<view class="price">{{item.price}}</view>
+						<view class="price">￥{{item.price}}</view>
 					</view>
 					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="daxibei" data-idx="{{index}}"
 						mode="aspectFill"></image>
@@ -119,7 +119,7 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<view class="price">{{item.price}}</view>
+						<view class="price">￥{{item.price}}</view>
 					</view>
 					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="honggaoliang"
 						data-idx="{{index}}" mode="aspectFill"></image>
@@ -144,7 +144,7 @@
 					<view class="foodName">{{item.foodName}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="userInfo">
-						<view class="price">{{item.price}}</view>
+						<view class="price">￥{{item.price}}</view>
 					</view>
 					<image class="bgImage" src="{{item.images[0]}}" catchtap="previewImg" data-name="xingyeyuan"
 						data-idx="{{index}}" mode="aspectFill"></image>

@@ -4,7 +4,6 @@ App({
   },
 
   onLaunch: function () {
-
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -30,6 +29,7 @@ App({
   },
 
   /**
+   * 点赞
    * @param 传入事件 e 
    * @param 传入页面的this pointer
    * @param 传入要改变的数组 arr 
@@ -42,122 +42,122 @@ App({
     console.log('触发点赞事件', e);
     console.log(pointer.data);
     console.log(arr);
-    if (userid) {
-      if (e.currentTarget.dataset.ismove === false && e.currentTarget.dataset.name === '主页' || e.currentTarget.dataset) {
-        let id = e.currentTarget.dataset._id;
-        let index = e.currentTarget.dataset.idx;
-        console.log(id, index);
-        let isLike = arr + "[" + index + "].isLike";
-        let likeNum = arr + "[" + index + "].likeNum";
-        let likeArr = arr + "[" + index + "].likeArr";
-        console.log(isLike, likeNum, likeArr);
-        if (pointer.data[arr][index].isLike === false) {
-          if (pointer.data.isLiking === false) {
-            let likeAnimation = wx.createAnimation({
-              duration: 1200
-            })
-            likeAnimation.scale(0.1).step({
-              duration: 320
-            });
-            likeAnimation.scale(1.0).step({
-              duration: 280
-            });
-            likeAnimation[index] = likeAnimation.export(),
-              pointer.data.isLiking = true;
-            pointer.setData({
-              likeAnimation: likeAnimation,
-              // isLiking: true
-            })
-            if (isSchoolFood) {
-              likeOrFavor(id, 'schoolFoodLike')
-                .then(res => {
-                  console.log(res);
-                  pointer.data.isLiking = false;
-                  pointer.setData({
-                    [isLike]: true,
-                    [likeNum]: res.result.data.likeNum,
-                    [likeArr]: res.result.data.likeArr,
-                    // isLiking: false,
-                  })
+
+    const dataset = e.currentTarget.dataset
+    if (!userid) {
+      this.toLogin()
+    }
+
+    if (!dataset.ismove && dataset.name === '主页' || dataset) {
+      let id = dataset._id;
+      let index = dataset.idx;
+      console.log(id, index);
+
+      let isLike = arr + "[" + index + "].isLike";
+      let likeNum = arr + "[" + index + "].likeNum";
+      let likeArr = arr + "[" + index + "].likeArr";
+
+      if (!pointer.data[arr][index].isLike) {
+        if (!pointer.data.isLiking) {
+          let likeAnimation = wx.createAnimation({
+            duration: 1200
+          })
+          likeAnimation.scale(0.1).step({
+            duration: 320
+          });
+          likeAnimation.scale(1.0).step({
+            duration: 280
+          });
+          likeAnimation[index] = likeAnimation.export(),
+            pointer.data.isLiking = true
+
+          pointer.setData({
+            likeAnimation: likeAnimation,
+            // isLiking: true
+          })
+          if (isSchoolFood) {
+            likeOrFavor(id, 'schoolFoodLike')
+              .then(res => {
+                console.log(res);
+                pointer.data.isLiking = false;
+                pointer.setData({
+                  [isLike]: true,
+                  [likeNum]: res.result.data.likeNum,
+                  [likeArr]: res.result.data.likeArr,
                 })
-                .catch(err => {
-                  console.log(err)
-                  wx.showToast({
-                    icon: 'none',
-                    title: '请求超时，请重试...',
-                  })
+              })
+              .catch(err => {
+                console.log(err)
+                wx.showToast({
+                  icon: 'none',
+                  title: '请求超时，请重试...',
                 })
-            } else {
-              likeOrFavor(id, 'like')
-                .then(res => {
-                  console.log(res);
-                  pointer.data.isLiking = false;
-                  pointer.setData({
-                    // isLiking: false,
-                    [isLike]: true,
-                    [likeNum]: res.result.data.likeNum,
-                    [likeArr]: res.result.data.likeArr
-                  })
+              })
+          } else {
+            likeOrFavor(id, 'like')
+              .then(res => {
+                console.log(res);
+                pointer.data.isLiking = false;
+                pointer.setData({
+                  // isLiking: false,
+                  [isLike]: true,
+                  [likeNum]: res.result.data.likeNum,
+                  [likeArr]: res.result.data.likeArr
                 })
-                .catch(err => {
-                  console.log(err)
-                  wx.showToast({
-                    icon: 'none',
-                    title: '请求超时，请重试...',
-                  })
+              })
+              .catch(err => {
+                console.log(err)
+                wx.showToast({
+                  icon: 'none',
+                  title: '请求超时，请重试...',
                 })
-            }
-          }
-        }
-        if (pointer.data[arr][index].isLike === true) {
-          console.log('取消点赞');
-          if (pointer.data.isLiking === false) {
-            pointer.data.isLiking = true;
-            // pointer.setData({
-            //   isLiking: true
-            // })
-            if (isSchoolFood) {
-              likeOrFavor(id, 'schoolFoodUnlike')
-                .then(res => {
-                  console.log(res);
-                  pointer.data.isLiking = false;
-                  pointer.setData({
-                    // isLiking: false,
-                    [isLike]: false,
-                    [likeNum]: res.result.data.likeNum,
-                    [likeArr]: res.result.data.likeArr
-                  })
-                }).catch(err => {
-                  console.log(err);
-                  wx.showToast({
-                    icon: 'none',
-                    title: '请求超时，请重试...',
-                  })
-                })
-            } else {
-              likeOrFavor(id, 'unlike')
-                .then(res => {
-                  console.log(res);
-                  pointer.data.isLiking = false;
-                  pointer.setData({
-                    // isLiking: false,
-                    [isLike]: false,
-                    [likeNum]: res.result.data.likeNum,
-                    [likeArr]: res.result.data.likeArr
-                  })
-                }).catch(err => {
-                  console.log(err);
-                  wx.showToast({
-                    icon: 'none',
-                    title: '请求超时，请重试...',
-                  })
-                })
-            }
+              })
           }
         }
       }
-    } else {
-      this.toLogin();
+      if (pointer.data[arr][index].isLike) {
+        console.log('取消点赞');
+        if (!pointer.data.isLiking) {
+          pointer.data.isLiking = true;
+          if (isSchoolFood) {
+            likeOrFavor(id, 'schoolFoodUnlike')
+              .then(res => {
+                console.log(res);
+                pointer.data.isLiking = false;
+                pointer.setData({
+                  // isLiking: false,
+                  [isLike]: false,
+                  [likeNum]: res.result.data.likeNum,
+                  [likeArr]: res.result.data.likeArr
+                })
+              }).catch(err => {
+                console.log(err);
+                wx.showToast({
+                  icon: 'none',
+                  title: '请求超时，请重试...',
+                })
+              })
+          } else {
+            likeOrFavor(id, 'unlike')
+              .then(res => {
+                console.log(res);
+                pointer.data.isLiking = false;
+                pointer.setData({
+                  // isLiking: false,
+                  [isLike]: false,
+                  [likeNum]: res.result.data.likeNum,
+                  [likeArr]: res.result.data.likeArr
+                })
+              }).catch(err => {
+                console.log(err);
+                wx.showToast({
+                  icon: 'none',
+                  title: '请求超时，请重试...',
+                })
+              })
+          }
+        }
+      }
     }
   },
 
@@ -171,80 +171,79 @@ App({
     let userid = wx.getStorageSync('userid');
     const {
       likeOrFavor
-    } = require('./db/db');
-    if (userid) {
-      if (e.currentTarget.dataset.ismove === false && e.currentTarget.dataset.name === '主页' || e.currentTarget.dataset) {
-        let id = e.currentTarget.dataset._id;
-        let index = e.currentTarget.dataset.idx;
-        let isFavor = arr + "[" + index + "].isFavor";
-        let favorNum = arr + "[" + index + "].favorNum";
-        let favorArr = arr + "[" + index + "].favorArr";
-        if (pointer.data[arr][index].isFavor === false) {
-          if (pointer.data.isFavoring === false) {
-            let favorAnimation = wx.createAnimation({
-              duration: 1200
-            })
-            favorAnimation.scale(0.1).step({
-              duration: 320
-            });
-            favorAnimation.scale(1.0).step({
-              duration: 280
-            });
-            favorAnimation[index] = favorAnimation.export(),
-            pointer.data.isFavoring = true;
-              pointer.setData({
-                favorAnimation: favorAnimation,
-                // isFavoring: true
-              })
-            likeOrFavor(id, 'favor')
-              .then(res => {
-                console.log(res);
-                pointer.data.isFavoring = false;
-                pointer.setData({
-                  // isFavoring: false,
-                  [isFavor]: true,
-                  [favorNum]: res.result.data.favorNum,
-                  [favorArr]: res.result.data.favorArr
-                })
-              }).catch(err => {
-                console.log(err);
-                wx.showToast({
-                  icon: 'none',
-                  title: '请求超时，请重试...',
-                })
-              })
-          }
-        }
-
-        if (pointer.data[arr][index].isFavor === true) {
-          if (pointer.data.isFavoring === false) {
-            pointer.data.isFavoring = true;
-            // pointer.setData({
-            //   isFavoring: true
-            // })
-            likeOrFavor(id, 'unfavor')
-              .then(res => {
-                pointer.data.isFavoring = false;
-                pointer.setData({
-                  // isFavoring: false,
-                  [isFavor]: false,
-                  [favorNum]: res.result.data.favorNum,
-                  [favorArr]: res.result.data.favorArr
-                })
-              })
-              .catch(err => {
-                console.log(err);
-                wx.showToast({
-                  icon: 'none',
-                  title: '请求超时，请重试...',
-                })
-              });
-          }
-        }
-      }
-    } else {
+    } = require('./db/db')
+    if (!userid) {
       this.toLogin();
     }
+    const dataset = e.currentTarget.dataset
+    if (!dataset.ismove && dataset.name === '主页' || dataset) {
+      let id = dataset._id;
+      let index = dataset.idx;
+      let isFavor = arr + "[" + index + "].isFavor";
+      let favorNum = arr + "[" + index + "].favorNum";
+      let favorArr = arr + "[" + index + "].favorArr";
+      if (!pointer.data[arr][index].isFavor) {
+        if (!pointer.data.isFavoring) {
+          let favorAnimation = wx.createAnimation({
+            duration: 1200
+          })
+          favorAnimation.scale(0.1).step({
+            duration: 320
+          });
+          favorAnimation.scale(1.0).step({
+            duration: 280
+          });
+          favorAnimation[index] = favorAnimation.export(),
+            pointer.data.isFavoring = true;
+          pointer.setData({
+            favorAnimation: favorAnimation,
+          })
+          likeOrFavor(id, 'favor')
+            .then(res => {
+              console.log(res);
+              pointer.data.isFavoring = false;
+              pointer.setData({
+                [isFavor]: true,
+                [favorNum]: res.result.data.favorNum,
+                [favorArr]: res.result.data.favorArr
+              })
+            }).catch(err => {
+              console.log(err);
+              wx.showToast({
+                icon: 'none',
+                title: '请求超时，请重试...',
+              })
+            })
+        }
+      }
+
+      if (pointer.data[arr][index].isFavor) {
+        if (!pointer.data.isFavoring) {
+          pointer.data.isFavoring = true;
+          // pointer.setData({
+          //   isFavoring: true
+          // })
+          likeOrFavor(id, 'unfavor')
+            .then(res => {
+              pointer.data.isFavoring = false;
+              pointer.setData({
+                // isFavoring: false,
+                [isFavor]: false,
+                [favorNum]: res.result.data.favorNum,
+                [favorArr]: res.result.data.favorArr
+              })
+            })
+            .catch(err => {
+              console.log(err);
+              wx.showToast({
+                icon: 'none',
+                title: '请求超时，请重试...',
+              })
+            });
+        }
+      }
+    }
+
   },
 
 

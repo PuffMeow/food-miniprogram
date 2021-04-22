@@ -10,7 +10,7 @@
 			<image class="gender"
 				src="{{gender == 0 ? '/images/rice.png' : gender == 1 ? '/images/boy.png' : '/images/girl.png'}}"></image>
 		</view>
-		<button class="loginBtn" size="mini" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击登录</button>
+		<button wx:else class="loginBtn" size="mini" bindtap="getUserInfo">点击登录</button>
 
 		<view class="bottom">
 			<view class="favorite-food" bindtap="toMyFavor">美食收藏</view>
