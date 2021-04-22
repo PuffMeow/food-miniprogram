@@ -1,4 +1,3 @@
-const util = require('../../util/util');
 import util from '../../util/util'
 import {
   msgCheck
