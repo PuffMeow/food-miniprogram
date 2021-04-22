@@ -1,7 +1,9 @@
 const util = require('../../util/util');
-const {
+import util from '../../util/util'
+import {
   msgCheck
-} = require('../../db/db');
+} from '../../db/db'
+
 
 let pages,
   prevPage;

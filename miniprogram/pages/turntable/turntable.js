@@ -1,6 +1,4 @@
-const {
-  getFavorData
-} = require('../../db/db');
+import {getFavorData} from '../../db/db'
 
 let getDataNum = 20;
 let total;
@@ -363,7 +361,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

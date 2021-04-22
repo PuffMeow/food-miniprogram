@@ -1,4 +1,4 @@
-let QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js');
+import QQMapWX from '../../libs/qqmap-wx-jssdk.min.js'
 let qqmapsdk;
 
 let myLatitude;

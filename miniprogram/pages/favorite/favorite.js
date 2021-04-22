@@ -1,6 +1,6 @@
-const {
+import {
   getFavorData
-} = require('../../db/db');
+} from '../../db/db'
 
 let openid;
 
