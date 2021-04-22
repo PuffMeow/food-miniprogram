@@ -219,7 +219,7 @@ function getSchoolImgs() {
 function getHotData() {
   return new Promise((resolve, reject) => {
     db.collection('Published')
-      .orderBy('statusTotal','desc')
+      .orderBy('statusTotal', 'desc')
       .limit(3)
       .get()
       .then(res => {
@@ -231,7 +231,7 @@ function getHotData() {
   })
 }
 
-module.exports = {
+export {
   getOpenid,
   getData,
   getMyData,

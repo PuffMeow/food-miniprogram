@@ -280,7 +280,7 @@ Page({
    */
   onShow: function () {
     userid = wx.getStorageSync('userid');
-    if (app.globalData.isAnotherPage === true) {
+    if (app.globalData.isAnotherPage) {
       this.onLoad();
       app.globalData.isAnotherPage = false;
     }
