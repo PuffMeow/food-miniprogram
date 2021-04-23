@@ -9,17 +9,6 @@ Page({
 
   },
 
-  //跳转到分享美食页
-  shareFood(e) {
-    if (userid) {
-      wx.navigateTo({
-        url: '../publish/publish',
-      })
-    } else {
-      app.toLogin();
-    }
-  },
-
   toTurntable(e) {
     if (userid) {
       wx.navigateTo({
@@ -36,7 +25,7 @@ Page({
     })
   },
 
-  toNearby(e){
+  toNearby(e) {
     wx.navigateTo({
       url: '../nearby/nearby',
     })

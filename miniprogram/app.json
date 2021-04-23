@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/publish/publish",
     "pages/comment/comment",
     "pages/out/out",
     "pages/my/my",
